@@ -11,6 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+
+
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/', 'HomeController@index')->name('frontend_home');
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('home', 'HomeController@admin')->name('home');
+        Route::get('admin', 'HomeController@admin')->name('admin');
+    });
 });
+
+include 'user.php';
+include 'media.php';
+include 'groupe.php';
+include 'prof.php';
+include 'etudient.php';
