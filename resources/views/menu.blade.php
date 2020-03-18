@@ -73,6 +73,22 @@
                     </a>
                   </li>
                   @endif
+                  @if( isGranted('ADMIN') )
+                  <li class="nav-item mn question">
+                    <a href="{{ route('question') }}" class="nav-link">
+                      <i class="fa fa-bookmark"></i> 
+                      {{ __('question.module_name') }}
+                    </a>
+                  </li>
+                  @endif
+                  @if( isGranted('ADMIN') )
+                  <li class="nav-item mn reponse">
+                    <a href="{{ route('reponse') }}" class="nav-link">
+                      <i class="fa fa-bookmark"></i> 
+                      {{ __('reponse.module_name') }}
+                    </a>
+                  </li>
+                  @endif
                   <script type="text/javascript">
                     $(document).ready(function(){
                       $('.mn.{{ explode('_',\Request::route()->getName())[0] }}').addClass('active');
