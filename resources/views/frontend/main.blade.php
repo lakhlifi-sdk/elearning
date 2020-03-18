@@ -25,6 +25,8 @@
   </head>
   <body class="">
 
+
+{{--
     @if ($message = Session::get('success'))
     <div class="pop-up">
       <span onclick="this.parentElement.style.display='none'" class="w3-button w3-green w3-large w3-display-topright">&times;</span>
@@ -39,7 +41,7 @@
     @endif
     <style type="text/css">.pop-up{position: fixed; top: 0px; left: 0px; height: 100vh; background: rgba(0,0,0,0.9); z-index: 10000 !important; width: 100%; color: #ffff; text-align: center; padding: 5%; }.pop-up span{font-size: 1.6em; background: red; height: 35px; width: 35px; text-align: center; display: inline-block; border-radius: 100%; cursor: pointer; }.pop-up p{font-size: 1.6em; margin-top: 20px; }</style>
 
-
+--}}
     @section('navbar')
     <nav class="navbar navbar-custom">
       <div class="container-fluid">
@@ -53,12 +55,12 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li class="home">
+            {{--<li class="home">
               <a href="{{ route('home') }}" ><i class="fa fa-home"></i>{{ __('global.home') }}</a>
-            </li>
+            </li>--}}
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
+            {{--<li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <!--i class="fa fa-language"></i--><img src="{{ asset('frontend/img/'.@App::getLocale().'.png') }}" style="width:18px;"> {{ config('languages.'.@App::getLocale()) }} <span class="caret"></span>
               </a>
@@ -69,7 +71,7 @@
                   </a>
                 </li>
               </ul>
-            </li>
+            </li>--}}
             @if( Auth::check() )
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -105,6 +107,8 @@
      </div>
       </div>
     </nav>
+
+    {{--
     @show
     <div class="container-fluid">      
       @yield('content')
@@ -113,5 +117,7 @@
         @include('frontend.footer')
       @show
     </div>
+
+    --}}
   </body>
 </html>

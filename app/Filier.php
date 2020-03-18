@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Semester extends Model
+class Filier extends Model
 {
     //
     protected $fillable = [
-        'name'
+        'name','description'
     ];
 
     public function __toString(){
@@ -16,12 +16,16 @@ class Semester extends Model
     }
 
     public function __toHtml(){
-        return ( $this->id ) ? '<a href="'.route('semester',$this->id).'" target="_blank">'.$this->name.'</a>' : "";
+        return ( $this->id ) ? '<a href="'.route('filier',$this->id).'" target="_blank">'.$this->name.'</a>' : "";
     }
 
 
     public function getname(){
     	return $this->name;
+    }
+
+    public function getdescription(){
+        return $this->description;
     }
 
 }

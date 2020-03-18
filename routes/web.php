@@ -27,3 +27,6 @@ include 'media.php';
 include 'groupe.php';
 include 'prof.php';
 include 'etudient.php';
+include 'semester.php';
+include 'filier.php';
+include 'module.php';

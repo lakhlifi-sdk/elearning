@@ -49,6 +49,30 @@
                     </div>
                   </li>
                   @endif
+                  @if( isGranted('ADMIN') )
+                  <li class="nav-item mn semester">
+                    <a href="{{ route('semester') }}" class="nav-link">
+                      <i class="fa fa-list"></i> 
+                      {{ __('semester.module_name') }}
+                    </a>
+                  </li>
+                  @endif
+                  @if( isGranted('ADMIN') )
+                  <li class="nav-item mn filier">
+                    <a href="{{ route('filier') }}" class="nav-link">
+                      <i class="fa fa-th"></i> 
+                      {{ __('filier.module_name') }}
+                    </a>
+                  </li>
+                  @endif
+                  @if( isGranted('ADMIN') )
+                  <li class="nav-item mn module">
+                    <a href="{{ route('module') }}" class="nav-link">
+                      <i class="fa fa-bookmark"></i> 
+                      {{ __('module.module_name') }}
+                    </a>
+                  </li>
+                  @endif
                   <script type="text/javascript">
                     $(document).ready(function(){
                       $('.mn.{{ explode('_',\Request::route()->getName())[0] }}').addClass('active');

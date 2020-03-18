@@ -6,14 +6,17 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-use App\Semester;
+use App\Filier;
 
-class SemesterController extends Controller
+class FilierController extends Controller
 {
-    public $model = 'semester';
+    public $model = 'filier';
     public function filter_fields(){
         return [
             'name'=>[
+                'type'=>'text'
+            ],
+            'description'=>[
                 'type'=>'text'
             ]
         ];
@@ -26,12 +29,12 @@ class SemesterController extends Controller
     }
     public function index()
     {
-        $semesters = Semester::where($this->filter(false))
+        $filiers = Filier::where($this->filter(false))
                         ->orderBy($this->orderby, 'desc')->paginate($this->perpage())
-                        ->withPath($this->url_params(true,['semester'=>null]));
+                        ->withPath($this->url_params(true,['filier'=>null]));
 
-        return view('semester.list', [
-            'results'=>$semesters
+        return view('filier.list', [
+            'results'=>$filiers
         ]);
     }
 
@@ -40,8 +43,8 @@ class SemesterController extends Controller
      */
     public function create()
     {
-        return view('semester.update',[
-            'object'=> new Semester(),
+        return view('filier.update',[
+            'object'=> new Filier(),
         ]);
     }
 
@@ -54,13 +57,14 @@ class SemesterController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $semester = Semester::create([
+        $filier = Filier::create([
             'name'=>request('name'),
+            'description'=>request('description'),
         ]);
        
 
        return redirect()
-                ->route('semester_edit', $semester->id)
+                ->route('filier_edit', $filier->id)
                 ->with('success', __('global.create_succees'));
     }
 
@@ -76,10 +80,10 @@ class SemesterController extends Controller
     
     public function edit($id)
     {
-        $semester = Semester::findOrFail($id);
+        $filier = Filier::findOrFail($id);
 
-        return view('semester.update', [
-            'object'=>$semester
+        return view('filier.update', [
+            'object'=>$filier
         ]);
     }
 
@@ -92,12 +96,13 @@ class SemesterController extends Controller
             'name' => 'required|string|max:255'
         ]);
       
-        $semester = Semester::findOrFail($id);
-        $semester->name = request('name');
-        $semester->save();
+        $filier = Filier::findOrFail($id);
+        $filier->name = request('name');
+        $filier->description = request('description');
+        $filier->save();
 
         return redirect()
-                ->route('semester_edit', $semester->id)
+                ->route('filier_edit', $filier->id)
                 ->with('success', __('global.edit_succees'));
     }
 
@@ -108,15 +113,15 @@ class SemesterController extends Controller
     {
         $msg = 'delete_error';
         $flash_type = 'error';
-        $semester = Semester::findOrFail($id);
-                    
-        if( $semester->delete() ){            
+        $filier = Filier::findOrFail($id);
+
+        if( $filier->delete() ){            
             $flash_type = 'success';
             $msg = 'delete_succees';
         }
 
         return redirect()
-            ->route('semester')
+            ->route('filier')
             ->with($flash_type, __('global.'.$msg));
     }
 }
