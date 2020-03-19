@@ -50,6 +50,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Media','avatar','id');
     }
 
+    public function questions()
+    {
+        return $this->hasMany('App\Question');
+    }
+
     public function avatar(){
         return  '<span class="avatar">' . ($this->picture ? $this->picture->reference : substr($this->name, 0, 2) ).'</span>';
     }
