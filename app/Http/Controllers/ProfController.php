@@ -4,16 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Prof;
 use Illuminate\Http\Request;
-use App\User;
 
 class ProfController extends Controller
 {
 
-    public $model = 'user';
+    public $model = 'prof';
     public function filter_fields(){
         return [
             'avatar'=>null,
+            'matricule'=>[
+                'type'=>'text',
+                //'operation'=>'='
+            ],
             'name'=>[
+                'type'=>'text',
+            ],
+            'cin'=>[
                 'type'=>'text',
             ],
             'email'=>[
@@ -36,11 +42,11 @@ class ProfController extends Controller
      */
     public function index()
     {
-        $users = User::where($this->filter(false))->where('role','PROF')
+        $users = Prof::where($this->filter(false))
                         ->orderBy($this->orderby, 'desc')->paginate($this->perpage())
                         ->withPath($this->url_params(true,['page'=>null]));
 
-        return view('user.list', [
+        return view('prof.list', [
             'results'=>$users
         ]);
     }

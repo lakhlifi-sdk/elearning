@@ -32,17 +32,17 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-arrow">
                       @if( isGranted('ROLE_USER_LIST') )
-                      <a href="{{ route('user') }}" class="dropdown-item">
+                      <a href="{{ route('user') }}" class="dropdown-item mn user">
                         <i class="fa fa-check-square-o"></i> {{ __('user.module_name') }}
                       </a>
                       @endif
                       @if( isGranted('ROLE_PROF_LIST') )
-                      <a href="{{ route('prof') }}" class="dropdown-item">
+                      <a href="{{ route('prof') }}" class="dropdown-item mn prof">
                         <i class="fa fa-check-square-o"></i> {{ __('prof.module_name') }}
                       </a>
                       @endif
                       @if( isGranted('ROLE_ETUDIENT_LIST') )
-                      <a href="{{ route('etudient') }}" class="dropdown-item">
+                      <a href="{{ route('etudient') }}" class="dropdown-item mn etudient">
                         <i class="fa fa-check-square-o"></i> {{ __('etudient.module_name') }}
                       </a>
                       @endif

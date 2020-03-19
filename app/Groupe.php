@@ -14,6 +14,10 @@ class Groupe extends Model
         return $this->name;
     }
 
+    public function __toHtml(){
+        return ( $this->id ) ? '<a href="'.route('groupe_edit',$this->id).'" target="_blank">'.$this->name.'</a>' : "";
+    }
+
     public function getname(){
         return $this->name;
     }

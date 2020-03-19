@@ -105,6 +105,30 @@ class User extends Authenticatable
     public function getcin(){
         return $this->cin;
     }
+    public function getgroupes(){
+        $this->groupes_html = "";
+
+        foreach ($this->groupes as $groupe) {
+            $this->groupes_html .= $groupe->__toHtml()." <br> ";
+        }
+        return $this->groupes_html;
+    }
+
+    public function scopeGroupe($query)
+    {
+        global $filter;
+        $filter = request('filter');
+
+        if( $filter["groupes"] and $filter["groupes"]['value'] ){
+            return $query->whereHas('groupes', function ($query) {
+                global $filter;
+
+
+                $query->where('groupe_id', $filter["groupes"]['value']);
+            });
+        }
+    }
+
     public function getcne(){
         if($this->etudient)
             return $this->etudient->cne;

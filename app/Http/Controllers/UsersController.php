@@ -26,24 +26,27 @@ class UsersController extends Controller
             ],
             'role'=>[
                 'type'=>'select',
-                'table' => 'users',
+                'data'=>[
+                    'EMPLOYE'=>'EMPLOYE',
+                    'ADMIN'=>'ADMIN',
+                ]
+                /*'table' => 'users',
                 'distinct' => 'role',
-                'fields' => ['role as key_','role as value_'],
+                'fields' => ['role as key_','role as value_'],*/
             ],
             'email'=>[
                 'type'=>'text',
             ],
             'phone'=>[
                 'type'=>'text',
-            ]
-            /*'groupes' => [
+            ],
+            'groupes' => [
                 'type' => 'select',
-                'operation' => null,
                 'data' => [],
                 'table' => 'groupes',
                 'fields' => ['id as key_','name as value_'],
                 'where' => [],
-            ],*/
+            ],
         ];
     }
 
@@ -59,8 +62,11 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::where($this->filter(false))
-                        ->orderBy($this->orderby, 'desc')->paginate($this->perpage())
-                        ->withPath($this->url_params(true,['page'=>null]));
+                    ->whereNotIn('role',['Etudient','PROF'])
+                    ->groupe()
+                    ->orderBy($this->orderby, 'desc')
+                    ->paginate($this->perpage())
+                    ->withPath($this->url_params(true,['page'=>null]));
 
         return view('user.list', [
             'results'=>$users
