@@ -5,7 +5,12 @@
   <form class="card" method="POST" enctype="multipart/form-data" action="@if($object->id){{ route('filier_update',$object->id) }}@else{{ route('filier_store') }}@endif">
     {{ csrf_field() }}
     <div class="card-body">
-      <h3 class="card-title"></h3>
+      <h3 class="card-title">@if($object->id)
+          {{ __('filier.filier_edit') }}
+        @else
+          {{ __('filier.filier_create') }}
+        @endif
+</h3>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">

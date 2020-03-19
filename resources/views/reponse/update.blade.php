@@ -5,7 +5,14 @@
   <form class="card" method="POST" enctype="multipart/form-data" action="@if($object->id){{ route('reponse_update',$object->id) }}@else{{ route('reponse_store') }}@endif">
     {{ csrf_field() }}
     <div class="card-body">
-      <h3 class="card-title"></h3>
+      <h3 class="card-title">
+        @if($object->id)
+          {{ __('reponse.reponse_edit') }}
+        @else
+          {{ __('reponse.reponse_create') }}
+        @endif
+
+      </h3>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
