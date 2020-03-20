@@ -1,7 +1,7 @@
 @extends('standard')
 
 @section('content')
-  <form class="card" method="POST" enctype="multipart/form-data" action="@if($object->id){{ route('prof_update',$object->id) }}@else{{ route('prof_store') }}@endif">
+  <form class="card" method="POST" enctype="multipart/form-data" action="@if($object->id){{ route('etudient_update',$object->id) }}@else{{ route('etudient_store') }}@endif">
     {{ csrf_field() }}
     <div class="card-body">
       <h3 class="card-title"></h3>
@@ -9,61 +9,111 @@
 
         <div class="col-md-6">
           <div class="form-group">
-            <label class="form-label">{{ __('prof.name') }}</label>
+            <label class="form-label">{{ __('etudient.name') }}</label>
             <input class="form-control" id="name" name="name" value="@if($object->id){{ $object->getname() }}@else{{ old('name') }}@endif" type="text" required="">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label class="form-label">{{ __('prof.email') }}</label>
+            <label class="form-label">{{ __('etudient.email') }}</label>
             <input class="form-control" id="email" name="email" value="@if($object->id){{ $object->getemail() }}@else{{ old('email') }}@endif" type="email">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label class="form-label">{{ __('prof.password') }}</label>
+            <label class="form-label">{{ __('etudient.password') }}</label>
             <input class="form-control" id="password" name="password" value="" type="text">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label class="form-label">{{ __('prof.phone') }}</label>
+            <label class="form-label">{{ __('etudient.phone') }}</label>
             <input class="form-control" id="phone" value="@if($object->id){{ $object->getphone() }}@else{{ old('phone') }}@endif" name="phone" value="" type="text">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label class="form-label">{{ __('prof.cin') }}</label>
+            <label class="form-label">{{ __('etudient.cin') }}</label>
             <input class="form-control" id="cin" value="@if($object->id){{ $object->getcin() }}@else{{ old('cin') }}@endif" name="cin" value="" type="text">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label class="form-label">{{ __('prof.matricule') }}</label>
-            <input class="form-control" id="matricule" value="@if($object->id){{ $object->getmatricule() }}@else{{ old('matricule') }}@endif" name="matricule" value="" type="text">
+            <label class="form-label">{{ __('etudient.cne') }}</label>
+            <input class="form-control" id="cne" value="@if($object->id){{ $object->getcne() }}@else{{ old('cne') }}@endif" name="cne" value="" type="text">
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label class="form-label">{{ __('prof.avatar') }}</label>
+            <label class="form-label">{{ __('etudient.avatar') }}</label>
             @if($object->id){!! $object->getavatar() !!}@endif
             <input class="form-contro" id="avatar" name="avatar" type="file">
           </div>
         </div>
         <div class="row filier_module">
 
+          <!-- Filiers -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-label">{{ __('etudient.filiers') }}</label>
+
+              <div class="row" id="filiers_inscri">
+                @php $student_filiers = [];  @endphp
+                @if($object and $object->etudient_filiers)
+                  @foreach ($object->etudient_filiers as $sf)
+                    @php $student_filiers[$sf->filier_id] = $sf->filier_id;  @endphp  
+                    <div class="filier_item">
+                      <input name="old_filier[{{$sf->id}}]" value="{{$sf->id}}" type="hidden">
+                        
+                      <input class="form-control" name="new_filier[{{$sf->id}}][id]" type="hidden" value="{{ $sf->id }}">
+                      <input class="form-control" name="new_filier[{{$sf->id}}][filier_id]" type="hidden" value="{{ $sf->filier_id }}">
+                      <input class="form-control" name="new_filier[{{$sf->id}}][year]" type="hidden" value="{{ $sf->year }}">
+                      <input class="form-control" name="new_filier[{{$sf->id}}][created_at]" type="hidden" value="{{ $sf->created_at }}">
+                      <input class="form-control" name="new_filier[{{$sf->id}}][updated_at]" type="hidden" value="{{ date('y-m-d H:i:s') }}">
+
+
+                      {{ $sf->year }} - {{ $sf->filier }}
+                      <i class="fa fa-trash" onclick="delete_filier_item(this)"></i>
+                    </div>
+                  @endforeach
+                @endif
+              </div>
+              <div class="row affecttation">
+                <b class="col-md-12">Affecter a une filier : </b>
+                <div class="col-md-6">
+                  <select class="form-control" id="filier" name="filier">
+                  
+                  @foreach($filiers as $filier)
+                    @if( !in_array( $filier->id, $student_filiers ) )
+                    <option value="{{ $filier->id }}">{{ $filier }}</option>
+                    @endif
+                  @endforeach
+                  </select>
+                </div>            
+                <div class="col-md-4">
+                  <input class="form-control" id="year" type="number" placeholder="Année : ">
+                </div>
+                <div class="col-md-2">
+                  <button id="add_filier_item" type="button" class="btn btn-indigo">Ajouter</button>
+                </div>
+                <div class="clear"></div>
+              </div>
+
+            </div>
+          </div>
+
           <!-- Modules -->
 
-          <div class="col-md-9">
+          <div class="col-md-6">
             <div class="form-group">
-              <label class="form-label">{{ __('prof.modules') }}</label>
+              <label class="form-label">{{ __('etudient.modules') }}</label>
 
 
               <div class="row" id="modules_inscri">
-                @php $prof_modules = [];  @endphp              
-                @if($object and $object->prof_modules)
-                  @foreach ($object->prof_modules as $sf)
-                    @php $prof_modules[$sf->module_id] = $sf->module_id;  @endphp  
+                @php $student_modules = [];  @endphp              
+                @if($object and $object->etudient_modules)
+                  @foreach ($object->etudient_modules as $sf)
+                    @php $student_modules[$sf->module_id] = $sf->module_id;  @endphp  
                     <div class="module_item">
                       <input name="old_module[{{$sf->id}}]" value="{{$sf->id}}" type="hidden">
                         
@@ -87,7 +137,7 @@
                   <select class="form-control" id="module" name="module">
                   
                   @foreach($modules as $module)
-                    @if( !in_array( $module->id, $prof_modules ) )
+                    @if( !in_array( $module->id, $student_modules ) )
                     <option value="{{ $module->id }}">{{ $module }}</option>
                     @endif
                   @endforeach

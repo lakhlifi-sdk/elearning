@@ -42,6 +42,7 @@ class UsersController extends Controller
             ],
             'groupes' => [
                 'type' => 'select',
+                'operation'=>null,
                 'data' => [],
                 'table' => 'groupes',
                 'fields' => ['id as key_','name as value_'],

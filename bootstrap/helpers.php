@@ -56,6 +56,8 @@ function base_list($results){
 
 	$html ='<div class="card">';
 		$html .= '<div class="card-header">';
+			$html .= '<h3 class="card-title">'.__(strtolower($model).'.list_').'</h3>';
+
 			$html .= '<div class="card-options">';
 				if( isGranted($model) && Route::has(strtolower($model)."_create") )
                 	$html .= '<a class="btn btn-link" href="'.route(strtolower($model)."_create").'"><i class="fa fa-plus"></i>&nbsp;'. __('global.add').'</a>';

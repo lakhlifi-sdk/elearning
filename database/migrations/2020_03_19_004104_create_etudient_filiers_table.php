@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfModulesTable extends Migration
+class CreateEtudientFiliersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,20 @@ class CreateProfModulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('prof_modules', function (Blueprint $table) {
+        Schema::create('etudient_filiers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('prof_id')->unsigned()->nullable();
-            $table->foreign('prof_id')
+            $table->integer('etudient_id')->unsigned()->nullable();
+            $table->foreign('etudient_id')
                     ->references('id')
-                    ->on('profs')
+                    ->on('etudients')
                     ->onDelete('cascade');
-            $table->integer('module_id')->unsigned()->nullable();
-            $table->foreign('module_id')
+            $table->integer('filier_id')->unsigned()->nullable();
+            $table->foreign('filier_id')
                     ->references('id')
-                    ->on('modules')
+                    ->on('filiers')
                     ->onDelete('cascade');
 
-            $table->date('date_affect')->nullable(); 
+            $table->integer('year')->nullable(); 
             $table->timestamps();
         });
     }
@@ -38,6 +38,6 @@ class CreateProfModulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prof_modules');
+        Schema::dropIfExists('etudient_filiers');
     }
 }
