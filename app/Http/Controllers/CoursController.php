@@ -238,7 +238,8 @@ class CoursController extends Controller
               <div>'.$question->contenu.( ($question->question_id) ? '' : '<br>
                         <a href="javascript:replay('.$question->id.')"  class="btn btn-square btn-secondary">
                           <i class="fa fa-reply" aria-hidden="true"></i>&nbsp;
-                          '.__("cours.question_replay").'</a>' ).'</div>
+                          '.__("cours.question_replay").'</a>' ).'
+              </div>'.( ($question->question_id) ? '' : '<ul id="media-list-'.$question->id.'" class="media-list" >' ).'
             </div>
           </div>
         </li>';
