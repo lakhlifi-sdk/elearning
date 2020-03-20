@@ -97,6 +97,20 @@
                     </a>
                   </li>
                   @endif
+
+
+                  <!-- etudient links -->
+
+                  @if( isGranted('ETUDIENT') )
+                  <li class="nav-item mn cours_etudient_list">
+                    <a href="{{ route('cours_etudient_list') }}" class="nav-link">
+                      <i class="fa fa-bookmark"></i> 
+                      {{ __('cours.module_name') }}
+                    </a>
+                  </li>
+                  @endif
+
+
                   <script type="text/javascript">
                     $(document).ready(function(){
                       $('.mn.{{ explode('_',\Request::route()->getName())[0] }}').addClass('active');

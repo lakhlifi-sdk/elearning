@@ -71,6 +71,22 @@ class CoursController extends Controller
         ]);
     }
 
+    public function cours_etudient_list()
+    {
+        $auth = auth()->user();
+        //dd($auth);
+        $prof = $auth->prof;
+        $courss = Cours::where($this->filter(false))
+                        ->where('prof_id',$prof->id)
+                        ->orderBy($this->orderby, 'desc')
+                        ->paginate($this->perpage())
+                        ->withPath($this->url_params(true,['cours'=>null]));
+
+        return view('cours.list', [
+            'results'=>$courss
+        ]);
+    }
+
     /*
      * Show the form for creating a new resource.
      */

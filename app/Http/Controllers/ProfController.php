@@ -68,7 +68,7 @@ class ProfController extends Controller
         $modules = Module::all();
         return view('prof.update',[
             'object'=> new Prof(),
-            'filiers'=>$filiers,
+            'modules'=>$modules,
         ]);
     }
 

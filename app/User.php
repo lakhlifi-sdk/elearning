@@ -84,7 +84,13 @@ class User extends Authenticatable
         )
             return true;
 
-        if($this->role == "ETUDIENT" && $role == "ETUDIENT")
+        //if($this->role == "ETUDIENT" && $role == "ETUDIENT")
+        if(
+            $this->role == "ETUDIENT" 
+            && preg_grep ("/^$role(.*)/i", [
+                "ETUDIENT","cours"
+            ])
+        )
             return true;
 
         $roles = $this->roles();
