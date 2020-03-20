@@ -12,13 +12,13 @@ return [
     |
     */
 
-    'failed'    => 'These credentials do not match our records.',
-    'throttle'  => 'Too many login attempts. Please try again in :seconds seconds.',
-    'student'   => 'Student Space',
-    'teacher'   => 'Teacher Space',
-    'manager'   => 'Administration',
+    'failed'    => "les informations didentification ne correspondent pas à nos enregistrements.",
+    'throttle'  => 'Trop de tentatives de connexion. Veuillez réessayer dans: quelque secondes.',
+    'student'   => "Espace d'étudiant",
+    'teacher'   => 'Espace Professeur',
+    'manager'   => 'administration',
     'email'     => 'Email',
-    'password'  => 'Password',
+    'password'  => 'mot de passe',
     'remember'  => 'Remember me',
-    'validate'  => 'Authentication',
+    'validate'  => 'Authentification',
 ];
