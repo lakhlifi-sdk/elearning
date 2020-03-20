@@ -73,6 +73,14 @@
                     </a>
                   </li>
                   @endif
+                  @if( isGranted('PROF') )
+                  <li class="nav-item mn cours">
+                    <a href="{{ route('cours') }}" class="nav-link">
+                      <i class="fa fa-bookmark"></i> 
+                      {{ __('cours.module_name') }}
+                    </a>
+                  </li>
+                  @endif
                   @if( isGranted('ADMIN') )
                   <li class="nav-item mn question">
                     <a href="{{ route('question') }}" class="nav-link">

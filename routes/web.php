@@ -32,3 +32,4 @@ include 'filier.php';
 include 'module.php';
 include 'question.php';
 include 'reponse.php';
+include 'cours.php';

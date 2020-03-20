@@ -115,6 +115,14 @@ class Controller extends BaseController
 				'value' => '',
 				'attributes' => ' class="datepicker"',
 			],
+			'datetimepicker' => [
+				'name' => '',
+				'td-class' => 'w-auto',
+				'operation' => 'date-time-like',
+				'type' => '',
+				'value' => '',
+				'attributes' => ' class="datetimepicker"',
+			],
 			'number' => [
 				'name' => '',
 				'td-class' => 'w-auto',
@@ -189,6 +197,12 @@ class Controller extends BaseController
 		  			case 'date-like':
 		  				list($y,$m,$d) = explode('-', $field['value']);
 		  				$fields[] = [ $name , 'like', '%'.$y.'-'.$m.'-'.$d.'%' ];
+		  				break;	
+		  			case 'date-time-like':
+		  				list($date,$time) = explode(' ', $field['value']);
+		  				list($y,$m,$d) = explode('-', $date);
+		  				list($hour,$min) = explode(':', $time);
+		  				$fields[] = [ $name , 'like', '%'.$y.'-'.$m.'-'.$d.' '.$hour.'%' ];
 		  				break;		  			
 		  			default:
 		  				$fields[] = [ $name , $field['operation'], '%'.$field['value'].'%' ];
@@ -320,6 +334,9 @@ class Controller extends BaseController
 
 			      		case 'datepicker':
 			      			$html .= '<input class="form-control p-1 w-auto input_filter_val datepicker" type="text" name="filter['.$name.'][value]" '.$field['attributes'].' value="'.$field['value'].'" style="text-align:center;">';
+			      			break;
+			      		case 'datetimepicker':
+			      			$html .= '<input class="form-control p-1 w-auto input_filter_val datetimepicker" type="text" name="filter['.$name.'][value]" '.$field['attributes'].' value="'.$field['value'].'" style="text-align:center;">';
 			      			break;
 			      		case 'number':
 			      			$html .= '<input class="form-control p-1" type="'.$type.'" step="0.01"  name="filter['.$name.'][value]" '.$field['attributes'].' value="'.$field['value'].'" >';

@@ -19,14 +19,18 @@
     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
 
+    <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+
     <!-- Dashboard Core -->
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
+    <link href="https://trentrichardson.com/examples/timepicker/jquery-ui-timepicker-addon.css" rel="stylesheet" />
     <!--link href="{{ asset('css/dashboard.rtl.css') }}" rel="stylesheet" /-->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
     <script src="{{ asset('js/select2-ar.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="https://trentrichardson.com/examples/timepicker/jquery-ui-timepicker-addon.js"></script>
     
     <script type="text/javascript">
       jQuery(document).ready(function(){
@@ -37,6 +41,7 @@
           jQuery("#delete_confirm_btn").attr("href", $(this).attr("href"));
         });
         $( ".datepicker" ).datepicker({ dateFormat : "yy-mm-dd"});
+        $( ".datetimepicker" ).datetimepicker({ dateFormat : "yy-mm-dd", timeFormat: 'HH:mm'});
       });
     </script>
     <style type="text/css">

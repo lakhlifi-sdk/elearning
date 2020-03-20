@@ -73,7 +73,18 @@ class User extends Authenticatable
     
     public function isGranted($role){
 
-        if($this->role == "ADMIN")
+        if($this->role == "ADMIN" && $role != "PROF" && $role != "ETUDIENT")
+            return true;
+
+        if(
+            $this->role == "PROF" 
+            && preg_grep ("/^$role(.*)/i", [
+                "PROF","cours"
+            ]) 
+        )
+            return true;
+
+        if($this->role == "ETUDIENT" && $role == "ETUDIENT")
             return true;
 
         $roles = $this->roles();
@@ -142,6 +153,14 @@ class User extends Authenticatable
     }
 
     public function getavatar(){
-        return $this->picture ? $this->picture->picture() : '<span class="avatar">'.substr($this->name, 0, 2).'</span>';
+        return $this->picture ? $this->getavatarlink(): $this->getavatartext();
+    }
+
+    public function getavatartext($size="lg"){
+        return $this->picture ? '' : '<span class="avatar avatar-'.$size.' avatar-lg avatar-blue mr-4">'.substr($this->name, 0, 2).'</span>';
+    }
+
+    public function getavatarlink($size="lg"){
+        return $this->picture ? '<span class="avatar avatar-'.$size.' avatar-lg avatar-blue mr-4" style="background-image: url(\''.$this->picture->link().'\' )"></span>' : '';
     }
 }
