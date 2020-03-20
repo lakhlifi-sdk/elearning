@@ -2,15 +2,15 @@
 
 return [
 
-    'groupe'=>'Groups',
-    'module_name'=>' Groups',
-    'list_'=>'List of Groups',
-    'groupe'=>'Groups',
-    'groupe_edit'=>'Edit Group',
-    'groupe_show'=>'Show Group',
-    'name'=>'Name',
-    'roles'=>'Roles',
-    'created_at'=>'created at',
-    'updated_at'=>'updated at',
-    'groupe_create'=>'add group',
+    'groupe'=>'Groupes',
+    'module_name'=>' Groupes',
+    'list_'=>'Liste des groupes',
+    'groupe'=>'Groupes',
+    'groupe_edit'=>'Modifier un Groupe',
+    'groupe_show'=>'Afficher le Groupe',
+    'name'=>'Nom',
+    'roles'=>'Rôles',
+    'created_at'=>'créé le',
+    'updated_at'=>'mis à jour le',
+    'groupe_create'=>'ajouter un groupe',
 ];

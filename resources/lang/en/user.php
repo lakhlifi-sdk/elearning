@@ -25,6 +25,6 @@ return [
     'role'=>'Role',
     'avatar'=>'Avatar',
     'cin'=>'CIN',
-    'cne'=>'Matricule ou CNE (si étudient)',
-    'superadmin'=>'Super Admin ',
+    'cne'=>'Registration number or (CNE) ',
+    'superadmin'=>'Super Admin',
 ];
