@@ -5,7 +5,14 @@
   <form class="card" method="POST" enctype="multipart/form-data" action="@if($object->id){{ route('groupe_update',$object->id) }}@else{{ route('groupe_store') }}@endif">
     {{ csrf_field() }}
     <div class="card-body">
-      <h3 class="card-title"></h3>
+      <h3 class="card-title">
+        @if($object->id)
+          {{ __('groupe.groupe_edit') }}
+        @else
+          {{ __('groue.groupe_create') }}
+        @endif
+
+      </h3>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
