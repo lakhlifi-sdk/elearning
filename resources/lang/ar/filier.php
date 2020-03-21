@@ -3,12 +3,14 @@
 return [
 
     'filier'=>'الشعبة',
-    'module_name'=>'مادة',
+    'module_name'=>'الشعب',
+    'name'=>'الشعبة',
+    'description'=>'الوصف'
     'list_'=>'قائمة الشعب',
     'filier'=>'الشعب',
     'filier_edit'=>'تعديل الشعبة',
     'filier_show'=>'اظهار الشعبة',
-    'user_id'=>'الطالب',
+    'user_id'=>'المستخدم',
     'start'=>'تاريخ البدأ',
     'end'=>'تاريخ الانتهاء',
     'valide'=>'متبت',
