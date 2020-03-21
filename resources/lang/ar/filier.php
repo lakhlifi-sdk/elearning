@@ -5,7 +5,7 @@ return [
     'filier'=>'الشعبة',
     'module_name'=>'الشعب',
     'name'=>'الشعبة',
-    'description'=>'الوصف'
+    'description'=>'الوصف',
     'list_'=>'قائمة الشعب',
     'filier'=>'الشعب',
     'filier_edit'=>'تعديل الشعبة',
