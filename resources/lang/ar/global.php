@@ -25,7 +25,9 @@ return [
     'confirm_delete_text'=>'يرجى الانتباه ,العملية لا يمكن عكسها في المستقبل',
     'pages_list' => '&nbsp;&nbsp;P : :current - :length &nbsp;|&nbsp; :total',
     'all_elements' => 'جميع العناصر',
-    
+    'create_succees' => " ثم انشاء العنصر بنجاح.",
+    'edit_succees' => "تم تعديل العنصر بنجاح.",
+    'delete_succees'=> "تم حدف العنصر بنجاح .",
     'close'=>'اقفال',
     'ok'=>'OK',
     'send'=>'ارسال',
