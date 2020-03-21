@@ -45,23 +45,12 @@ Route::group(['middleware' => 'web'], function () {
             ->name('cours_add_question')
             ->middleware('Admin:PROF')
             ->where('id', '[0-9]+');
+
+        // Etudient
         
-
-        // liens of Etudient
-
-        Route::get('mes-cours', 'CoursController@cours_etudient_list')
-            ->name('cours_etudient_list')
-            ->middleware('Admin:ETUDIENT');
-
-        /*Route::get('{id}', 'CoursController@show')
-            ->name('cours_show')
-            ->middleware('Admin:PROF')
-            ->where('id', '[0-9]+');*/
-                
-        Route::get('{id}/add-question', 'CoursController@add_question')
-            ->name('cours_add_question')
-            ->middleware('Admin:PROF')
+        Route::get('{id}/etudient/question', 'CoursController@add_question')
+            ->name('etudient_cours_add_question')
+            ->middleware('Admin:ETUDIENT')
             ->where('id', '[0-9]+');
-        
     });
 });

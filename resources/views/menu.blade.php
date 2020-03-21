@@ -102,10 +102,10 @@
                   <!-- etudient links -->
 
                   @if( isGranted('ETUDIENT') )
-                  <li class="nav-item mn cours_etudient_list">
-                    <a href="{{ route('cours_etudient_list') }}" class="nav-link">
+                  <li class="nav-item mn etudient_list_cours">
+                    <a href="{{ route('etudient_list_cours') }}" class="nav-link">
                       <i class="fa fa-bookmark"></i> 
-                      {{ __('cours.module_name') }}
+                      {{ __('etudient.list_cours') }}
                     </a>
                   </li>
                   @endif

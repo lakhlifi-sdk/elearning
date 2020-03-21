@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Module;
 
 class Etudient extends Model
 {
@@ -79,7 +80,31 @@ class Etudient extends Model
     public function filiers(){
         return $this->belongsToMany('App\Filier','etudient_filiers');
     }
-    
+
+    public function filier__s(){
+        return $this->filiers()->orderBy('year','desc')->take(1);
+    }
+
+    public function filier(){
+        return $this->filier__s->first();
+    }
+
+    public function modules_ids(){
+        $ids = [];
+
+        if( $this->filier() ){
+            foreach( Module::where('filier_id', $this->filier()->id)->get() as $mdl ){
+                $ids[$mdl->id] = $mdl->id;
+            }
+        }
+
+        foreach( $this->modules as $mdle ){
+            $ids[$mdle->id] = $mdle->id;
+        }
+
+        return $ids;
+    }
+        
     public function etudient_modules(){
         return $this->hasMany('App\Etudient_module');
     }

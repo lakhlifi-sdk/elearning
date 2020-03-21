@@ -88,10 +88,11 @@ class User extends Authenticatable
         if(
             $this->role == "ETUDIENT" 
             && preg_grep ("/^$role(.*)/i", [
-                "ETUDIENT","cours"
+                "ETUDIENT","cours_show"
             ])
-        )
+        ){
             return true;
+        }
 
         $roles = $this->roles();
         
@@ -163,10 +164,14 @@ class User extends Authenticatable
     }
 
     public function getavatartext($size="lg"){
-        return $this->picture ? '' : '<span class="avatar avatar-'.$size.' avatar-lg avatar-blue mr-4">'.substr($this->name, 0, 2).'</span>';
+        return $this->picture ? '' : '<span class="avatar avatar-'.$size.' avatar-blue mr-4">'.substr($this->name, 0, 2).'</span>';
     }
 
     public function getavatarlink($size="lg"){
-        return $this->picture ? '<span class="avatar avatar-'.$size.' avatar-lg avatar-blue mr-4" style="background-image: url(\''.$this->picture->link().'\' )"></span>' : '';
+        return $this->picture ? '<span class="avatar avatar-'.$size.' avatar-blue mr-4" style="background-image: url(\''.$this->picture->link().'\' )"></span>' : '';
+    }
+
+    public function getavatarfulllink(){
+        return $this->picture ? $this->picture->link() : '';
     }
 }

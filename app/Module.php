@@ -12,7 +12,7 @@ class Module extends Model
     ];
 
     public function __toString(){
-        return ( $this->id ) ? $this->ref : "";
+        return ( $this->id ) ? $this->ref . ' - ' . $this->name : "";
     }
 
     public function __toHtml(){

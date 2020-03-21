@@ -35,6 +35,14 @@ Route::group(['middleware' => 'web'], function () {
             ->name('etudient_update')
             ->middleware('Admin:Etudient')
             ->where('id', '[0-9]+');
+
+        Route::get('cours', 'EtudientController@list_cours')
+            ->name('etudient_list_cours')
+            ->middleware('Admin:ETUDIENT');
+
+        Route::get('cours/{id}', 'EtudientController@show_cours')
+            ->name('etudient_show_cours')
+            ->middleware('Admin:ETUDIENT');
         
     });
 });

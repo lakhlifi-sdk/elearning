@@ -15,7 +15,8 @@ class CoursController extends Controller
     public function filter_fields(){
         $auth = auth()->user();
         $prof = $auth->prof;
-        return [
+
+        $data = [
             'titre' => [
                 'type' => 'text'
             ],
@@ -27,7 +28,17 @@ class CoursController extends Controller
                     'TD'=>'TD',
                 ]
             ],
-            'module_id' => [
+            'module_id' => [],
+            'start' => [
+                'type' => 'datetimepicker'
+            ],
+            'end' => [
+                'type' => 'datetimepicker'
+            ]
+        ];
+
+        if( $prof and $prof->id ){
+            $data['module_id'] =  [
                 'type' => 'select',
                 'operation'=>'=',
                 'table' => 'modules',
@@ -39,15 +50,22 @@ class CoursController extends Controller
                 'fields' => ['modules.id as key_','modules.name as value_'],
                 'where' => [
                     ['prof_id',$prof->id]
-                ],
-            ],
-            'start' => [
-                'type' => 'datetimepicker'
-            ],
-            'end' => [
-                'type' => 'datetimepicker'
-            ]
-        ];
+                ]
+            ];
+        }else{
+            $etudient = $auth->etudient;
+            $etudient->modules_ids();
+            $data['module_id'] =  [
+                'type' => 'select',
+                'operation'=>'=',
+                'table' => 'modules',
+                'fields' => ['id as key_','name as value_'],
+                'whereIn' => ['id',$etudient->modules_ids() ]
+            ];
+
+        }
+
+        return $data;
     }
 
     public function __construct()
@@ -70,23 +88,6 @@ class CoursController extends Controller
             'results'=>$courss
         ]);
     }
-
-    public function cours_etudient_list()
-    {
-        $auth = auth()->user();
-        //dd($auth);
-        $prof = $auth->prof;
-        $courss = Cours::where($this->filter(false))
-                        ->where('prof_id',$prof->id)
-                        ->orderBy($this->orderby, 'desc')
-                        ->paginate($this->perpage())
-                        ->withPath($this->url_params(true,['cours'=>null]));
-
-        return view('cours.list', [
-            'results'=>$courss
-        ]);
-    }
-
     /*
      * Show the form for creating a new resource.
      */

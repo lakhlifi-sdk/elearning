@@ -156,6 +156,7 @@ class Controller extends BaseController
 	            'join' => [],
 	            'fields' => ['id as key_','name as value_'],
 	            'where' => [],
+	            'whereIn' => [],
 			],
 		];
 		$filter = request('filter');
@@ -311,6 +312,12 @@ class Controller extends BaseController
 									}
 									if ($field['distinct']) {
 										$data = $data->distinct($field['distinct']);
+									}
+									if( $field['whereIn'] ){
+										$data = $data->whereIn( 
+											$field['whereIn'][0],
+											$field['whereIn'][1] 
+										);
 									}
 									$data = $data->where( $field['where'] )->get();
 

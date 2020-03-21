@@ -7,6 +7,7 @@ use App\Media;
 use App\User;
 use App\Filier;
 use App\Module;
+use App\Cours;
 use Illuminate\Http\Request;
 
 
@@ -210,4 +211,41 @@ class EtudientController extends Controller
 
         return redirect()->route('etudient');
     }
+
+
+    // frontend
+
+    public function list_cours()
+    {
+        $auth = auth()->user();
+        //dd($auth);
+        $etudient = $auth->etudient;
+
+        //$etudient->filier
+        $courss = Cours::where($this->filter(false))
+                        ->whereIn('module_id',$etudient->modules_ids())
+                        ->orderBy('module_id', 'desc')
+                        ->paginate($this->perpage())
+                        ->withPath($this->url_params(true,['cours'=>null]));
+
+        return view('etudient.list_cours', [
+            'results'=>$courss
+        ]);
+    }
+
+    public function show_cours($id)
+    {
+        $auth = auth()->user();
+        $etudient = $auth->etudient;
+
+        $cours = Cours::where('id',$id)
+                        ->whereIn('module_id',$etudient->modules_ids())
+                        ->firstOrfail();
+
+
+        return view('etudient.show_cours', [
+            'object'=>$cours
+        ]);
+    }
+
 }

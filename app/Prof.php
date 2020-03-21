@@ -11,7 +11,7 @@ class Prof extends User
     ];
 
     public function __toString(){
-        return ( $this->id ) ? $this->user : "";
+        return ( $this->id ) ? $this->user->__toString() : "";
     }
 
     public function __toHtml(){
@@ -105,5 +105,9 @@ class Prof extends User
 
     public function getavatar(){
         return $this->user->getavatar();
+    }
+
+    public function getavatarfulllink(){
+        return $this->user->getavatarfulllink();
     }
 }

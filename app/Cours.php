@@ -38,8 +38,21 @@ class Cours extends Model
         return $this->type;
     }
 
+    public function tagtype(){
+        if($this->type == 'Cours')
+            return '<span class="tag tag-success">Cours</span>';
+        if($this->type == 'TP')
+            return '<span class="tag tag-danger">TP</span>';
+        if($this->type == 'TD')
+            return '<span class="tag tag-warning">TD</span>';
+    }
+
     public function getcontenu(){
-        return $this->contenu;
+        $txt = str_replace('oembed url', 'iframe src', $this->contenu);
+        $txt = str_replace('oembed', 'iframe', $txt );
+        $txt = str_replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/', $txt );
+
+        return $txt;
     }
 
     public function getprof_id(){
