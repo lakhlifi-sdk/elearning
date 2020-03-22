@@ -2,7 +2,12 @@
 
 return [
 
-    'module'=>'Modules',
+    'module'=>'Module',
+    'ref'=>'Reference number',
+    'name'=>'Module name',
+    'filier_id'=>'Branch',
+    'semester_id'=>'semester',
+    'description'=>'Module Description',
     'module_name'=>' Modules',
     'list_'=>'List of Modules',
     'module'=>'Modules',

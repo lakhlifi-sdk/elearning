@@ -2,12 +2,13 @@
 
 return [
 
-    'filier'=>'filiers',
-    'module_name'=>'filiers',
-    'list_'=>'Liste des filiers',
-    'filier'=>'filiers',
-    'filier_edit'=>'Editer filier',
-    'filier_show'=>'Afficher filier',
+    'filier'=>'filières ',
+    'module_name'=>'filières ',
+    'name'=>'filière',
+    'description'=>'Description',
+    'list_'=>'Liste des filieres',
+    'filier_edit'=>'Modifier la filiere',
+    'filier_show'=>'Afficher la filiere',
     'user_id'=>'Etudiant',
     'start'=>'Date de debut',
     'end'=>'Date de fin',
@@ -15,5 +16,5 @@ return [
     'file'=>'Attachement',
     'created_at'=>'Créé le',
     'updated_at'=>'Mis à jour le',
-    'filier_create'=>'Ajouter filier',
+    'filier_create'=>'Ajouter une filiere',
 ];

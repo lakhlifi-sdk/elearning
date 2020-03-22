@@ -7,6 +7,7 @@ return [
     | User Language Lines
     |--------------------------------------------------------------------------
     */
+    'dashboard'=>"page d'accueil",
     'copyright' => 'Tous les droits sont réservés',
     'gotolist' => 'Revenir',
     'exportpdf' => 'Exporter au format PDF',
@@ -25,7 +26,11 @@ return [
     'confirm_delete_text'=>'Faites attention, cette action est irreversible.',
     'pages_list' => '&nbsp;&nbsp;P : :current - :length &nbsp;|&nbsp; :total',
     'all_elements' => 'tous les elements',
-    
+
+    'create_succees' => "l'élément a été créé avec succès",
+    'edit_succees' => "L'élement a été modifié avec succès",
+    'delete_succees'=> "L'élement a été supprimé avec succès",
+
     'close'=>'Fermer',
     'ok'=>'OK',
     'send'=>'envoyer',
@@ -38,7 +43,10 @@ return [
     
     'has' => 'sera également supprimé',
     'attention' => 'Faites attention',
-    'oui' => 'OK',
+    'oui' => 'oui',
+
+    'login'=>'Se connecter',
+    'register'=>'Créer un compte',
 
 
     // email
@@ -47,6 +55,6 @@ return [
     'reset_password'    =>'réinitialisation de mot de passe',
     
     'no_result'=>'Pas de résultat ...',
-    'failed'=>'Une erreur veuillez réessayer',
+    'failed'=>' erreur!! veuillez réessayer',
 
 ];

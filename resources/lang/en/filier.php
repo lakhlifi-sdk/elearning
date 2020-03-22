@@ -3,7 +3,9 @@
 return [
 
     'filier'=>'branch',
-    'module_name'=>'branch',
+    'module_name'=>'Branches',
+    'name'=>'Branch',
+    'description'=>'Description',
     'list_'=>'List of branches',
     'filier'=>'branch',
     'filier_edit'=>'Edit branch',

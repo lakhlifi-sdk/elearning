@@ -2,15 +2,15 @@
 
 return [
 
-    'groupe'=>'الاصناف',
-    'module_name'=>' الاصناف',
-    'list_'=>'قائمة الاصناف',
+    'groupe'=>'الأصناف',
+    'module_name'=>' الأصناف',
+    'list_'=>'قائمة الأصناف',
     'groupe'=>'الصنف',
-    'groupe_edit'=>'تعديل الاصناف',
-    'groupe_show'=>'إظهار الاصناف',
-    'name'=>'اسم',
+    'groupe_edit'=>'تعديل الأصناف',
+    'groupe_show'=>'إظهار الأصناف',
+    'name'=>'إسم',
     'roles'=>'الوظيفة',
     'created_at'=>'انشئ في',
-    'updated_at'=>'حدث في',
-    'groupe_create'=>'اضافة صنف',
+    'updated_at'=>'حُدٌِث في',
+    'groupe_create'=>'إضافة صنف',
 ];

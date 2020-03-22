@@ -7,6 +7,7 @@ return [
     | User Language Lines
     |--------------------------------------------------------------------------
     */
+    'dashboard'=>'Home',
     'copyright' => 'All rights reserved',
     'gotolist' => 'Return',
     'exportpdf' => 'Export as PDF',
@@ -25,7 +26,10 @@ return [
     'confirm_delete_text'=>'Pay attention, this process is irreversible.',
     'pages_list' => '&nbsp;&nbsp;P : :current - :length &nbsp;|&nbsp; :total',
     'all_elements' => 'all items',
-    
+    'create_succees' => " The item was created successfully",
+    'edit_succees' => "The item was updated successfully",
+    'delete_succees'=> "The item was deleted successfully",
+
     'close'=>'Close',
     'ok'=>'OK',
     'send'=>'Send',
@@ -40,7 +44,8 @@ return [
     'attention' => 'pay attention',
     'oui' => 'OK',
 
-
+    'login'=>'Sign in',
+    'register'=>'Sign Up',
     // email
     'msg_reset'         => 'You are receiving this email because we received a request to reset the password for your account.',
     'not_request'       => 'If you did not request a password reset, no action is required',

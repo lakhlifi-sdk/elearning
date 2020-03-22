@@ -7,17 +7,17 @@ return [
     | User Language Lines
     |--------------------------------------------------------------------------
     */
-    'module_name'=>' Users',
-    'list_'=>'List of Users',
-    'user'=>'Users',
-    'user_create'=>'Add User',
-    'user_edit'=>'Edit User',
-    'user_show'=>'Show User',
+    'module_name'=>'Utilisateurs',
+    'list_'=>'Liste des utilisateurs',
+    'user'=>'utilisateurs',
+    'user_create'=>'Ajouter un utilisateur',
+    'user_edit'=>"Modifier l'utilisateur ",
+    'user_show'=>'Afficher',
 
     'name'=>'Nom',
-    'email'=>'email',
+    'email'=>'Email',
     'password'=>'Mot de passe',
-    'password_confirmation'=>'Confirmez le mot de passe',
+    'password_confirmation'=>'confirmer le mot de passe',
     'groupes'=>'Groupes',
     'created_at'=>'Créé le',
     'updated_at'=>'Mis à jour le',
@@ -26,5 +26,5 @@ return [
     'avatar'=>'Avatar',
     'cin'=>'CIN',
     'cne'=>'Matricule ou CNE (pour les étudiants)',
-    'superadmin'=>'Super Admin ',
+    'superadmin'=>'admin supérieur',
 ];

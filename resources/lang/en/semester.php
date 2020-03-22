@@ -4,6 +4,7 @@ return [
 
     'semester'=>'semester',
     'module_name'=>'Semester',
+    'name'=>'Semester',
     'list_'=>'List of Semesters',
     'semester'=>'Semester',
     'semester_edit'=>'Edit semester',
