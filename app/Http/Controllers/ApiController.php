@@ -24,7 +24,7 @@ class ApiController extends Controller
             return $etudient->Json();
 
 
-        return ['error'=>'failed to login'];
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
 
 
