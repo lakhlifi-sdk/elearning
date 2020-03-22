@@ -30,6 +30,10 @@ class Cours extends Model
         return $this->hasMany('App\Cours_question')->where('question_id',NULl);
     }
 
+    public function quizquestions(){
+        return $this->hasMany('App\Quizquestion');
+    }
+
     public function gettitre(){
         return $this->titre;
     }

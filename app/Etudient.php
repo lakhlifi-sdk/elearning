@@ -138,4 +138,21 @@ class Etudient extends Model
     public function getavatar(){
         return $this->user->getavatar();
     }
+
+    public function Json(){
+        return [
+            'id' => $this->id,
+            'user_id' => $this->user->id,
+            'name' => $this->user->getname(),
+            'role' => $this->user->getrole(),
+            'email' => $this->user->getemail(),
+            'avatar' => $this->user->getavatarfulllink(),
+            'phone' => $this->user->getphone(),
+            'cin' => $this->user->getcin(),
+            'cne' => $this->getcne(),
+
+            'filier' => $this->filier(),
+            'joined_modules' => $this->modules,
+        ];
+    }
 }

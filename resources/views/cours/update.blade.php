@@ -187,10 +187,6 @@ var editor = tinymce.init({
   };
 
   tinymce.init(editor_config);
-function myCustomOnChangeHandler(inst) {
-  alert("Some one modified something");
-  alert("The HTML is now:" + inst.getBody().innerHTML);
-}
 
 </script>
 @endsection
@@ -338,6 +334,53 @@ function myCustomOnChangeHandler(inst) {
                 <div class="input-group-append">
                   <button type="button" class="btn btn-info" id="sendQuestion">
                     <i class="fa fa-paper-plane"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        @endif
+      </div>
+
+
+      <div class="row div_course_parts course__quiz">
+        @if( $object->id )
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-bdy" >
+              @if( $object->id and $object->quizquestions )
+              @foreach( $object->quizquestions as $QQUE )
+                <div class="card">
+                  <div class="card-body">
+                    <input name="QQUE[{{$QQUE->id}}][id]" type="hidden" value="{{ $QQUE->id }}">
+                    <textarea class="form-control QQUE" name="QQUE[{{$QQUE->id}}][contenu]">{{ $QQUE->contenu }}</textarea>
+                  </div>
+                  <div class="card-footer">
+                    <h3 class="card-title">Card title</h3>
+                  </div>
+                </div>
+              @endforeach
+              @endif
+            </div>
+            <div class="card-footer">
+              <b>{{ __('cours.new_quiz_question') }}</b><hr/><br/>
+              <div class="input-group">
+                <div class="input-group-append">
+                  <span>{{ __('cours.new_quiz_question_type') }}</span>
+                  <select id="new_QQUE_type">
+                    <option value="true_false">{{ __('cours.true_false') }}</option>
+                    <option value="single">{{ __('cours.single') }}</option>
+                    <option value="multiple">{{ __('cours.multiple') }}</option>
+                  </select>
+                </div>
+                <div class="input-group-append">
+                  <span>{{ __('cours.new_quiz_question_number') }}</span>
+                  <input id="new_QQUE_number" type="number" min="2" max="4">
+                </div>
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-info" id="SendQuizQuestion">
+                    <i class="fa fa-plus"></i>
                   </button>
                 </div>
               </div>

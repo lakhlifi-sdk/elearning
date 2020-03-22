@@ -33,3 +33,15 @@ include 'module.php';
 include 'question.php';
 include 'reponse.php';
 include 'cours.php';
+
+
+
+
+// ANDROID APP API 
+Route::group(['middleware' => 'web'], function () {
+
+    Route::group(['prefix' => '/api/etudient/'], function () {
+        Route::post('login', 'ApiController@EtudientLogin')->name('etudient_login');
+    });
+
+});
