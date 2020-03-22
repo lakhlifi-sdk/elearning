@@ -34,7 +34,7 @@ class Groupe extends Model
                 'Groupe' => 'Groups',
                 'User' => 'Users',
                 'Module' => 'Modules',
-                'Session' => 'Lessons',
+                'Session' => 'Sessons',
                 'Justification' => 'Justification',
             );
     }
