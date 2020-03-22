@@ -8,7 +8,7 @@
   font-weight: normal;
   font-style: normal;
 }
-*:not(.fa){
+body{
   font-family: 'JFFlat-Regular' !important;
 }
 ._de,._es,._en,._fr{

@@ -1,7 +1,196 @@
 @extends('standard')
 
 @section('head')
-<script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
+<!--script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script -->
+<!--script src="https://cdn.ckeditor.com/4.13.0/full/ckeditor.js"></script-->
+
+<script src="{{ asset('tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+
+<script>
+ /*tinymce.init({
+      selector: 'textarea#contenu',
+      plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+      toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+      toolbar_mode: 'floating',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+    });*/
+/*
+var editor = tinymce.init({
+  selector: 'textarea#contenu',
+  plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
+  imagetools_cors_hosts: ['picsum.photos'],
+  menubar: 'file edit view insert format tools table help',
+  toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+  toolbar_sticky: true,
+  height: 400,
+  templates: [
+        { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
+    { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
+    { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
+  ],
+  template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+  template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+  height: 600,
+  image_caption: true,
+  quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+  noneditable_noneditable_class: "mceNonEditable",
+  toolbar_mode: 'sliding',
+  contextmenu: "link image imagetools table",
+  relative_urls: false,
+  file_picker_callback: function(callback, value, meta) {
+    // Provide file and text for the link dialog
+    /*if (meta.filetype == 'file') {
+      callback('mypage.html', {text: 'My text'});
+    }
+
+    // Provide image and alt text for the image dialog
+    if (meta.filetype == 'image') {
+      callback('myimage.jpg', {alt: 'My alt text'});
+    }
+
+    // Provide alternative source and posted for the media dialog
+    if (meta.filetype == 'media') {
+      callback('movie.mp4', {source2: 'alt.ogg', poster: 'image.jpg'});
+    }
+
+    var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+    var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+
+    var cmsURL = 'http://localhost/elearning/laravel-filemanager?field_name=';
+    if (meta.filetype == 'image') {
+      cmsURL = cmsURL + "&type=Images";
+    } else {
+      cmsURL = cmsURL + "&type=Files";
+    }
+
+   /* tinymce.activeEditor.windowManager.openUrl({
+   title: 'Just a title',
+   url: cmsURL
+});
+
+
+    tinymce.activeEditor.windowManager.openUrl({
+      url : cmsURL,
+      title : 'Filemanager',
+      width : x * 0.8,
+      height : y * 0.8,
+      resizable : "yes",
+      close_previous : "no"
+    });
+
+    
+
+  }
+
+
+ });*/
+
+
+
+  var editor_config = {
+    path_absolute : "http://localhost/elearning/",
+    selector: "textarea#contenu",
+    theme: 'modern',
+    plugins: [
+      'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+      'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+      'save table contextmenu directionality emoticons template paste textcolor'
+    ],
+    content_css: 'css/content.css',
+    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media embed iframe fullpage | forecolor backcolor emoticons PDF POWERPOINT',
+    /*audio_template_callback: function(data) {
+     return 'lmkmlkjm <audio oubtou="lkjml" controls>' + '\n<source src="' + data.source1 + '"' + (data.source1mime ? ' type="' + data.source1mime + '"' : '') + ' />\n' + '</audio>';
+   },*/
+    media_url_resolver: function (data, resolve/*, reject*/) {
+      if (
+        data.url.indexOf('.ppt') !== -1 ||
+        data.url.indexOf('.pptx') !== -1 ||
+        data.url.indexOf('.pdf') !== -1 ||
+        data.url.indexOf('.doc') !== -1 ||
+        data.url.indexOf('.docx') !== -1 ||
+        data.url.indexOf('.xls') !== -1 ||
+        data.url.indexOf('.xlsx') !== -1
+      ) {
+        var embedHtml = '<iframe src="//docs.google.com/gview?url='+data.url+'&embedded=true" style="height=100%;width:100%;" frameborder="0"></iframe>';
+        resolve({html: embedHtml});
+      } else {
+        resolve({html: ''});
+      }
+    },
+    file_browser_callback : function(field_name, url, type, win) {
+      var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+      var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+
+      var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+      if (type == 'image') {
+        cmsURL = cmsURL + "&type=Images";
+      } else {
+        cmsURL = cmsURL + "&type=Files";
+      }
+
+      tinyMCE.activeEditor.windowManager.open({
+        file : cmsURL,
+        title : '',
+        width : x * 0.8,
+        height : y * 0.8,
+        resizable : "yes",
+        close_previous : "no"
+      });
+    },
+    setup: function (editor) {
+      editor.addButton('PDF', {
+        text: 'PDF',
+        icon: false,
+        onclick: function() {
+          editor.execCommand('mceMedia');
+
+            /*var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+            var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+
+            var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=';
+            if (type == 'image') {
+              cmsURL = cmsURL + "&type=Images";
+            } else {
+              cmsURL = cmsURL + "&type=Files";
+            }
+
+            var aaa = tinyMCE.activeEditor.windowManager.open({
+              file : cmsURL,
+              title : '',
+              width : x * 0.8,
+              height : y * 0.8,
+              resizable : "yes",
+              close_previous : "no",
+              onSubmit: function(e) {
+                  // Insert content when the window form is submitted
+                  editor.insertContent('Title: ' + e.data.title);
+              }
+            });*/
+              /*var img = editor.selection.getNode();
+              var ed = tinyMCE.activeEditor;
+              var content = ed.selection.getContent({'format':'html'});
+              var new_selection_content = '<a href="/' + img.src + '">' + content + '</a>';
+              ed.execCommand('insertHTML', false, new_selection_content); */
+        }
+      });
+      editor.addButton('POWERPOINT', {
+        text: 'Power Point',
+        icon: false,
+        onclick: function() {
+          editor.execCommand('mceMedia');
+        }
+      });
+    },
+  };
+
+  tinymce.init(editor_config);
+function myCustomOnChangeHandler(inst) {
+  alert("Some one modified something");
+  alert("The HTML is now:" + inst.getBody().innerHTML);
+}
+
+</script>
 @endsection
 
 @section('content')
@@ -80,7 +269,7 @@
         <div class="col-md-12">
           <div class="form-group">
             <label class="form-label">{{ __('cours.contenu') }}</label>
-            <textarea class="form-control" id="contenu" name="contenu">@if($object->id){{ $object->contenu }}@else{{ old('contenu') }}@endif</textarea>
+            <textarea class="form-control" rows="15" id="contenu" name="contenu">@if($object->id){{ $object->contenu }}@else{{ old('contenu') }}@endif</textarea>
           </div>
         </div>
       </div>
@@ -231,23 +420,47 @@
 
       });
 
-      ClassicEditor
+      /*ClassicEditor
       .create( document.querySelector( '#contenu' ), {
 
           /*ckfinder: {
               uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
-          }*/
+          }*
         } 
       )
       .catch( error => {
         console.error( error );
-      });
+      });*/
       function replay($Qid){
         $('#question_text').text("{{ __('cours.question_replay') }} : #"+$Qid);
         $('#question_id').val($Qid);
         $('#message').focus();
       }
+        /*var obja = {
+    language : 'fr',
+    //contentsCss : 'http://51.91.118.237/css/editor.css',
+    toolbarGroups : [
+      { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+      { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+      { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+      { name: 'forms', groups: [ 'forms' ] },
+      { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+      { name: 'paragraph', groups: [ 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+      { name: 'links', groups: [ 'links' ] },
+      { name: 'insert', groups: [ 'insert' ] },
+      { name: 'styles', groups: [ 'styles' ] },
+      { name: 'colors', groups: [ 'colors' ] },
+      { name: 'tools', groups: [ 'tools' ] },
+      { name: 'others', groups: [ 'others' ] },
+      { name: 'about', groups: [ 'about' ] }
+    ],
+    removeButtons : 'Save,NewPage,Preview,Print,PasteText,PasteFromWord,Find,Replace,SelectAll,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,RemoveFormat,CopyFormatting,Superscript,Subscript,Outdent,Indent,CreateDiv,BidiLtr,BidiRtl,Language,JustifyRight,JustifyBlock,JustifyCenter,JustifyLeft,Anchor,Flash,Smiley,PageBreak,Styles,Font,ShowBlocks,About'
+  };
+
+  CKEDITOR.replace( 'contenu' , obja);*/
+
     </script>
+
     <style type="text/css">
       .div_course_parts:not(.active){display: none !important;} 
       .list-group-item.active{ background: #daeefc; }
