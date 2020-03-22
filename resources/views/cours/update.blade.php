@@ -89,7 +89,7 @@ var editor = tinymce.init({
 
 
   var editor_config = {
-    path_absolute : "http://localhost/elearning/",
+    path_absolute : "{{ env('APP_URL', '') }}",
     selector: "textarea#contenu",
     theme: 'modern',
     plugins: [
