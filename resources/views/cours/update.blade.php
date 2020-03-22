@@ -114,7 +114,7 @@ var editor = tinymce.init({
       ) {
         var url = data.url.replace('https://docs.google.com/gview?url=','');
         url = url.replace('&embedded=true','');
-        var embedHtml = '<embed src="https://docs.google.com/gview?url='+url+'&embedded=true" height="600px" width="100%" frameborder="0"></embed>';
+        var embedHtml = '<iframe datasrc="docs" src="https://docs.google.com/gview?url='+url+'&embedded=true" height="600px" width="100%" frameborder="0" class="ifrm"></iframe>';
         resolve({html: embedHtml});
       } else {
         resolve({html: ''});
