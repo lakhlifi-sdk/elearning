@@ -133,7 +133,7 @@ var editor = tinymce.init({
 
       tinyMCE.activeEditor.windowManager.open({
         file : cmsURL,
-        title : '',
+        title : 'File Manager',
         width : x * 0.8,
         height : y * 0.8,
         resizable : "yes",

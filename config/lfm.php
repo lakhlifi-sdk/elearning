@@ -117,6 +117,10 @@ return [
     // available since v1.3.0
     // only when '/laravel-filemanager?type=Files'
     'valid_file_mimetypes' => [
+        'image/jpg',
+        'image/PNG',
+        'image/JPG',
+        'image/JPEG',
         'image/jpeg',
         'image/pjpeg',
         'image/png',
@@ -130,8 +134,11 @@ return [
         'audio/mpeg',
         'audio/mp3',
         'audio/wav',
+
         
         'application/vnd.ms-excel',
+        'application/octet-stream',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         'application/vnd.openxmlformats-officedocument.presentationml.presentation',
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         'application/docx'
