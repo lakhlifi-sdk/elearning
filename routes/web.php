@@ -38,10 +38,10 @@ include 'cours.php';
 
 
 // ANDROID APP API 
-Route::group(['middleware' => 'web'], function () {
+//Route::group(['middleware' => 'web'], function () {
 
     Route::group(['prefix' => '/api/etudient/'], function () {
         Route::get('login', 'ApiController@EtudientLogin')->name('etudient_login');
     });
 
-});
+//});
