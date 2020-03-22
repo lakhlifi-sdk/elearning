@@ -52,8 +52,8 @@ class Cours extends Model
         $txt = str_replace('oembed', 'iframe', $txt );
         $txt = str_replace('https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/', $txt );
         // files pdf ppt....
-        $txt = str_replace('<iframe datasrc="docs"', '<embed ', $txt );
-        $txt = str_replace('class="ifrm"></iframe>', 'class="ifrm"></embed>', $txt );
+        $txt = str_replace('<iframe class="ifrm"', '<embed ', $txt );
+        $txt = str_replace('frameborder="0"></iframe>', '></embed>', $txt );
 
         return $txt;
     }
