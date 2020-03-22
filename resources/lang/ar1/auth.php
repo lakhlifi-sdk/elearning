@@ -19,8 +19,5 @@ return [
     'email'     => 'البريد الالكتروني',
     'password'  => 'كلمة المرور',
     'remember'  => 'تذكرني',
-    'validate'  => 'دخول',
-    'name'=>'الاسم',
-    'password_confirm'=>'تأكيد كلة المرور',
-    'phone'=>'الهاتف',
+    'validate'  => 'المصادقة',
 ];

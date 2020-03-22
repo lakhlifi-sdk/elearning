@@ -14,7 +14,7 @@
                   <li class="nav-item mn home">
                     <a href="{{ route('home') }}" class="nav-link">
                       <i class="fa fa-tachometer"></i> 
-                      Dashboard
+                      {{ __('global.dashboard') }}
                     </a>
                   </li>
                   @if( isGranted('ADMIN') )
