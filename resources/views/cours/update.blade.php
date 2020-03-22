@@ -112,7 +112,9 @@ var editor = tinymce.init({
         data.url.indexOf('.xls') !== -1 ||
         data.url.indexOf('.xlsx') !== -1
       ) {
-        var embedHtml = '<iframe src="//docs.google.com/gview?url='+data.url+'&embedded=true" style="height=100%;width:100%;" frameborder="0"></iframe>';
+        var url = data.url.replace('//docs.google.com/gview?url=','');
+        url = url.replace('&embedded=true','');
+        var embedHtml = '<iframe src="//docs.google.com/gview?url='+url+'&embedded=true" style="height:600px;width:100%;" frameborder="0"></iframe>';
         resolve({html: embedHtml});
       } else {
         resolve({html: ''});
