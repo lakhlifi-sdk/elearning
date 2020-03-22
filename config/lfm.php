@@ -126,6 +126,7 @@ return [
         'text/plain',
         'video/mp4',
         'video/mpeg',
+        'video/webm',
         'audio/mpeg',
         'audio/mp3',
         'audio/wav',
