@@ -4,7 +4,7 @@ return [
 
     'module'=>'وحدة',
     'ref'=>'الرقم المرجعي',
-    'name'=>'اسم الوحدة',
+    'name'=>'إسم الوحدة',
     'filier_id'=>'الشعبة',
     'semester_id'=>'الفصل الدراسي',
     'description'=>'وصف الوحدة',
@@ -14,8 +14,8 @@ return [
     'module_edit'=>'تعديل الوحدة',
     'module_show'=>'اظهار الوحدة',
     'title'=>'العنوان',
-    'teacher'=>'الاستاذ',
+    'teacher'=>'الأستاذ',
     'created_at'=>'أنشئ في',
-    'updated_at'=>'حدث في',
-    'module_create'=>'انشاء وحدة جديدة',
+    'updated_at'=>'حُدٌِث في',
+    'module_create'=>'إنشاء وحدة جديدة',
 ];

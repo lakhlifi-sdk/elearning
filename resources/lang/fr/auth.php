@@ -12,13 +12,16 @@ return [
     |
     */
 
-    'failed'    => "les informations didentification ne correspondent pas à nos enregistrements.",
+    'failed'    => "les informations d'identification ne correspondent pas à nos enregistrements.",
     'throttle'  => 'Trop de tentatives de connexion. Veuillez réessayer dans: quelque secondes.',
     'student'   => "Espace d'étudiant",
     'teacher'   => 'Espace Professeur',
     'manager'   => 'administration',
     'email'     => 'Email',
     'password'  => 'mot de passe',
-    'remember'  => 'Remember me',
-    'validate'  => 'Authentification',
+    'remember'  => 'Se souvenir de moi',
+    'validate'  => 'authentification',
+    'name'=>'nom',
+    'password_confirm'=>'confirmation du mote de passe',
+    'phone'=>'numéro de téléphone',
 ];

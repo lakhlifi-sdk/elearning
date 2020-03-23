@@ -1,8 +1,12 @@
 <?php
 
 return [
-
     'module'=>'Modules',
+    'ref'=>'Référence',
+    'name'=>'Nom du module',
+    'filier_id'=>'Filière',
+    'semester_id'=>'Semestre',
+    'description'=>'Description',
     'module_name'=>' Modules',
     'list_'=>'Liste des Modules',
     'module'=>'Modules',

@@ -21,4 +21,7 @@ return [
     'password'  => 'Password',
     'remember'  => 'Remember me',
     'validate'  => 'Authentication',
+    'name'=>'Name',
+    'password_confirm'=>'Confirm Password',
+    'phone'=>'numéro de téléphone',
 ];

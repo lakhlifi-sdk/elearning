@@ -1,13 +1,13 @@
 <?php
 return[
     'module_name'=>'الأسئلة',
-    'list_'=>'قائمة الاسئلة',
+    'list_'=>'قائمة الأسئلة',
     'avatar'=>' الصورة الرمزية',
     'contenu'=>'محتوى السؤال',
     'user_id'=>'اسم المستخدم',
-    'question_create'=>'اضافة سؤال',
+    'question_create'=>'إضافة سؤال',
     'titre'=>'العنوان',
-    'photo'=>'ارفاق صور',
+    'photo'=>'إرفاق صور',
     'question_edit'=>'تعديل السؤال',
 
 ];
