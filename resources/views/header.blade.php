@@ -5,7 +5,7 @@
                 <img src="{{ asset('img/fav-icon.png') }}" class="header-brand-img" alt="tabler logo">
                 {{ config('app.name') }}
               </a>
-              <div class="d-flex order-lg-2 ml-auto">
+              <div class="d-flex order-lg-2 ml-auto ln-left">
                 <!-- div class="nav-item d-none d-md-flex">
                   <a href="https://github.com/tabler/tabler" class="btn btn-sm btn-outline-primary" target="_blank">Source code</a>
                 </div>
@@ -42,7 +42,7 @@
                 </div -->
                 <div class="dropdown">
                   <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                    <span class="avatar" style="background-image: url('{{ asset('storage/'.auth()->user()->avatar()) }}')"></span>
+                    {!! auth()->user()->getavatar("md") !!}
                     <span class="ml-2 d-none d-lg-block">
                       <span class="text-default">{{ auth()->user() }}</span>
                       <small class="text-muted d-block mt-1">{{ auth()->user()->getrole() }}</small>

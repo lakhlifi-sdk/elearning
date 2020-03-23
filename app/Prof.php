@@ -103,8 +103,8 @@ class Prof extends User
         return $this->user->getcin();
     }
 
-    public function getavatar(){
-        return $this->user->getavatar();
+    public function getavatar($size="lg"){
+        return $this->user->getavatar($size);
     }
 
     public function getavatarfulllink(){

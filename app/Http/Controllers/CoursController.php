@@ -227,6 +227,9 @@ class CoursController extends Controller
      */
     public function destroy($id)
     {
+        $auth = auth()->user();
+        $prof = $auth->prof;
+
         $msg = 'delete_error';
         $flash_type = 'error';
         $cours = Cours::where([

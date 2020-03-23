@@ -367,7 +367,7 @@ var editor = tinymce.init({
         @if( $object->id )
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-bdy" id="quizquestions" >
+            <div class="card-bdy" id="quizquestions">
               @if( $object->id and $object->quizquestions )
               @foreach( $object->quizquestions as $QQUE )
                 <div class="card card-question">
@@ -376,7 +376,7 @@ var editor = tinymce.init({
                     <textarea class="form-control QQUE_TEXTAREA" name="QQUE[{{$QQUE->id}}][contenu]">{{ $QQUE->contenu }}</textarea>
                   </div>
                   <div class="card-footer">
-                    <h3 class="card-title">{{ __("cours.responses_title") }} : </h3>
+                    <h3 class="card-title">{{ __("cours.responses_title") }} : <b>({{ __("cours.check_correct_reponses") }})</b></h3>
                     {!! $QQUE->build_reponses() !!}
                     <div class="clear"></div>
                   </div>
@@ -502,7 +502,7 @@ var editor = tinymce.init({
               <textarea class="form-control QQUE" id="QQUE_'+QQUENBR+'_TEXTAREA" name="QQUE[new_'+QQUENBR+'][contenu]"></textarea> \
             </div> \
             <div class="card-footer"> \
-              <h3 class="card-title">{{ __("cours.responses_title") }} : </h3>';
+              <h3 class="card-title">{{ __("cours.responses_title") }} : <b>({{ __("cours.check_correct_reponses") }})</b></h3>';
 
             if( $type == "true_false" )
               $number = 2;

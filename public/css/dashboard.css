@@ -11,6 +11,9 @@
 body{
   font-family: 'JFFlat-Regular' !important;
 }
+.ln-text-right{
+  text-align: right !important;
+}
 ._de,._es,._en,._fr{
   background-repeat: no-repeat;
   padding-left: 35px !important;

@@ -159,8 +159,8 @@ class User extends Authenticatable
             return $this->prof->matricule;
     }
 
-    public function getavatar(){
-        return $this->picture ? $this->getavatarlink(): $this->getavatartext();
+    public function getavatar($size="lg"){
+        return $this->picture ? $this->getavatarlink($size): $this->getavatartext($size);
     }
 
     public function getavatartext($size="lg"){

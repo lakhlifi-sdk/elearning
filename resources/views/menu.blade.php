@@ -1,15 +1,15 @@
         <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-3 ml-auto">
-                <!-- form class="input-icon my-3 my-lg-0">
+              <!--div class="col-lg-3">
+                <form class="input-icon my-3 my-lg-0">
                   <input type="search" class="form-control header-search" placeholder="Search&hellip;" tabindex="1">
                   <div class="input-icon-addon">
                     <i class="fa fa-search"></i>
                   </div>
-                </form -->
-              </div>
-              <div class="col-lg order-lg-first">
+                </form>
+              </div -->
+              <div class="col-lg-9 order-lg-first">
                 <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                   <li class="nav-item mn home">
                     <a href="{{ route('home') }}" class="nav-link">
@@ -116,6 +116,28 @@
                       $('.mn.{{ explode('_',\Request::route()->getName())[0] }}').addClass('active');
                     })
                   </script>
+                </ul>
+              </div>
+              <div class="col-lg-3 ln-text-right">
+                <ul class="nav navbar-nav">
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #000;text-decoration: none;">
+                      <img src="{{ asset('frontend/img/'.@App::getLocale().'.png') }}"> {{ config('languages.'.@App::getLocale()) }} <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" style="padding: 0;">
+                      <li id="language">
+                        <a href="{{ route('setlange','ar') }}">
+                          <img src="{{ asset('frontend/img/ar.png') }}"> 
+                        </a>
+                        <a href="{{ route('setlange','fr') }}">
+                          <img src="{{ asset('frontend/img/fr.png') }}"> 
+                        </a>
+                        <a href="{{ route('setlange','en') }}">
+                          <img src="{{ asset('frontend/img/en.png') }}"> 
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
             </div>

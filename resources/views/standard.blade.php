@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -23,6 +23,9 @@
 
     <!-- Dashboard Core -->
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
+    @if( @App::getLocale() == "ar" )
+    <link href="{{ asset('css/dashboard.rtl.css') }}" rel="stylesheet" />
+    @endif
     <link href="https://trentrichardson.com/examples/timepicker/jquery-ui-timepicker-addon.css" rel="stylesheet" />
     <!--link href="{{ asset('css/dashboard.rtl.css') }}" rel="stylesheet" /-->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
@@ -63,6 +66,15 @@
         padding: 10px;
         border: 0;
       }
+#language a{
+  display: inline-block;
+  width: 32%;
+  text-align: center;
+  padding: 10px;
+}
+#language a:hover{
+  background: #02b4eb;
+}
     </style>
     @yield('head')
   </head>
