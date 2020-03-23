@@ -30,7 +30,7 @@
     <script src="{{ asset('js/select2.min.js') }}"></script>
     <script src="{{ asset('js/select2-ar.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
-    <script src="https://trentrichardson.com/examples/timepicker/jquery-ui-timepicker-addon.js"></script>
+    <script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
     
     <script type="text/javascript">
       jQuery(document).ready(function(){

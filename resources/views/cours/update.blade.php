@@ -185,8 +185,27 @@ var editor = tinymce.init({
       });
     },
   };
-
   tinymce.init(editor_config);
+
+  function apply_editor(selector){
+    var editor_config_textarea = {
+      selector: selector,
+       menubar:false,
+    statusbar: false,
+      plugins: [
+        'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+        'wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+        'save table contextmenu directionality emoticons template paste textcolor'
+      ],
+      content_css: 'css/content.css',
+      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link forecolor backcolor'
+    };
+
+    tinymce.init(editor_config_textarea);
+
+  }
+  apply_editor("textarea.QQUE_TEXTAREA");
+  
 
 </script>
 @endsection
@@ -348,23 +367,25 @@ var editor = tinymce.init({
         @if( $object->id )
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-bdy" >
+            <div class="card-bdy" id="quizquestions" >
               @if( $object->id and $object->quizquestions )
               @foreach( $object->quizquestions as $QQUE )
-                <div class="card">
+                <div class="card card-question">
                   <div class="card-body">
                     <input name="QQUE[{{$QQUE->id}}][id]" type="hidden" value="{{ $QQUE->id }}">
-                    <textarea class="form-control QQUE" name="QQUE[{{$QQUE->id}}][contenu]">{{ $QQUE->contenu }}</textarea>
+                    <textarea class="form-control QQUE_TEXTAREA" name="QQUE[{{$QQUE->id}}][contenu]">{{ $QQUE->contenu }}</textarea>
                   </div>
                   <div class="card-footer">
-                    <h3 class="card-title">Card title</h3>
+                    <h3 class="card-title">{{ __("cours.responses_title") }} : </h3>
+                    {!! $QQUE->build_reponses() !!}
+                    <div class="clear"></div>
                   </div>
                 </div>
               @endforeach
               @endif
             </div>
-            <div class="card-footer">
-              <b>{{ __('cours.new_quiz_question') }}</b><hr/><br/>
+            <div class="card-footer" style="background-color: #f5f7fb;">
+              <b>{{ __('cours.new_quiz_question') }}</b><br/>
               <div class="input-group">
                 <div class="input-group-append">
                   <span>{{ __('cours.new_quiz_question_type') }}</span>
@@ -375,8 +396,8 @@ var editor = tinymce.init({
                   </select>
                 </div>
                 <div class="input-group-append">
-                  <span>{{ __('cours.new_quiz_question_number') }}</span>
-                  <input id="new_QQUE_number" type="number" min="2" max="4">
+                  <span>{{ __('cours.new_quiz_question_number_reponses') }}</span>
+                  <input id="new_QQUE_number" value="2" disabled="disabled" type="number" min="2" max="6">
                 </div>
                 <div class="input-group-append">
                   <button type="button" class="btn btn-info" id="SendQuizQuestion">
@@ -463,6 +484,53 @@ var editor = tinymce.init({
           });
         });
 
+        $('#new_QQUE_type').change(function(){
+          if( $(this).val() == "true_false" )
+            $('#new_QQUE_number').attr('disabled', 'disabled');
+          else
+            $('#new_QQUE_number').removeAttr('disabled', 'disabled');
+        });
+
+        QQUENBR = 1;
+        $('#SendQuizQuestion').click(function(){
+          $type = $('#new_QQUE_type').val();
+          $number = $('#new_QQUE_number').val();
+
+          $Qhtml = '<div class="card  card-question"> \
+            <div class="card-body">\
+              <input type="hidden" value="'+$type+'" name="QQUE[new_'+QQUENBR+'][type]"> \
+              <textarea class="form-control QQUE" id="QQUE_'+QQUENBR+'_TEXTAREA" name="QQUE[new_'+QQUENBR+'][contenu]"></textarea> \
+            </div> \
+            <div class="card-footer"> \
+              <h3 class="card-title">{{ __("cours.responses_title") }} : </h3>';
+
+            if( $type == "true_false" )
+              $number = 2;
+
+            for( i=1; i<=$number; i++ ){
+
+              $Qhtml += '<div class="item"> \
+                <div class="input-group"> \
+                  <span class="input-group-prepend"> \
+                    <span class="input-group-text"> \
+                      <input type="'+( $type == 'multiple' ? 'checkbox' : 'radio' )+'" value="'+i+'" '+( i==1 ? 'checked="checked"' : '' )+' name="QQUE[new_'+QQUENBR+'][reponses][correct]'+( $type == 'multiple' ? '['+i+']' : '' )+'" class="input-group-text"> \
+                    </span> \
+                  </span> \
+                  <input type="text" name="QQUE[new_'+QQUENBR+'][reponses][data]['+i+']" class="form-control" value="choi '+i+'"> \
+                </div> \
+              </div>';
+
+            }
+
+          $Qhtml += '</div> \
+          </div>';
+
+          $('#quizquestions').append($Qhtml);
+          apply_editor('textarea#QQUE_'+QQUENBR+'_TEXTAREA');
+          QQUENBR ++;
+
+        });
+
       });
 
       /*ClassicEditor
@@ -509,6 +577,10 @@ var editor = tinymce.init({
     <style type="text/css">
       .div_course_parts:not(.active){display: none !important;} 
       .list-group-item.active{ background: #daeefc; }
+      .card-question{margin: 1%;width: 98%;background-color: #f5f5f5;}
+      .card-question .item{margin-bottom: 5px;}
+      .card-question .card-body{padding: 10px; border: none;}
+      .card-question .card-body .mce-container{border: none;}
     </style>
     <div class="card-footer text-right">
       @include('layout.update-actions')

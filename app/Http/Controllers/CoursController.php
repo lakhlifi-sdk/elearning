@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Cours;
 use App\Cours_question;
+use App\Quizquestion;
 
 class CoursController extends Controller
 {
@@ -183,6 +184,36 @@ class CoursController extends Controller
         $cours->module_id = request('module_id');
         $cours->start = request('start');
         $cours->end = request('end');
+
+        // save Quiz
+
+        $QQUE = request('QQUE');
+
+        //dd($QQUE);
+
+        if( $QQUE and is_array($QQUE) ){
+            foreach ($QQUE as $key => $value) {
+                if( is_numeric($key) ){
+                    // exists in database we need update it
+                    $QQ = Quizquestion::find($key);
+                    if( $QQ and $QQ->id ){
+                        $QQ->contenu =$value['contenu'];
+                        $QQ->reponses = json_encode($value['reponses']);
+                        //'type'=> $value['type'],
+                        //'cours_id'=> $cours->id,
+                        $QQ->save();
+                    }
+                }else{
+                    // new we need add it
+                    $QQ = Quizquestion::create([
+                        'type'=> $value['type'],
+                        'contenu'=> $value['contenu'],
+                        'cours_id'=> $cours->id,
+                        'reponses'=> json_encode($value['reponses']),
+                    ]);
+                }
+            }
+        }
 
         $cours->save();
 
