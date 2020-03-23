@@ -14,7 +14,7 @@ return [
     'user_edit'=>'تعديل مستخدم',
     'user_show'=>'إظهار مستخدم',
 
-    'name'=>'الإسم'
+    'name'=>'الإسم',
     'email'=>'البريد الإلكتروني',
     'password'=>'كلمة المرور',
     'password_confirmation'=>'تأكيد كلمة المرور',
