@@ -384,7 +384,7 @@ var editor = tinymce.init({
               @endforeach
               @endif
             </div>
-            <div class="card-footer" style="background-color: #f5f7fb;">
+            <div class="card-footer addQuiz" style="background-color: #f5f7fb;">
               <b>{{ __('cours.new_quiz_question') }}</b><br/>
               <div class="input-group">
                 <div class="input-group-append">
@@ -581,6 +581,10 @@ var editor = tinymce.init({
       .card-question .item{margin-bottom: 5px;}
       .card-question .card-body{padding: 10px; border: none;}
       .card-question .card-body .mce-container{border: none;}
+      .addQuiz>b{display: block; }
+      .addQuiz .input-group-append .select2-container{margin: 0 10px; min-width: 180px; }
+      .addQuiz .input-group-append #new_QQUE_number{margin: 0 10px; }
+      .addQuiz .input-group-append #SendQuizQuestion{width: 100px; }
     </style>
     <div class="card-footer text-right">
       @include('layout.update-actions')

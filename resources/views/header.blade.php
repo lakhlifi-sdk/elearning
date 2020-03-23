@@ -6,9 +6,6 @@
                 {{ config('app.name') }}
               </a>
               <div class="d-flex order-lg-2 ml-auto ln-left">
-                <!-- div class="nav-item d-none d-md-flex">
-                  <a href="https://github.com/tabler/tabler" class="btn btn-sm btn-outline-primary" target="_blank">Source code</a>
-                </div>
                 <div class="dropdown d-none d-md-flex">
                   <a class="nav-link icon" data-toggle="dropdown">
                     <i class="fa fa-bell"></i>
@@ -39,7 +36,7 @@
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item text-center text-muted-dark">Mark all as read</a>
                   </div>
-                </div -->
+                </div>
                 <div class="dropdown">
                   <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
                     {!! auth()->user()->getavatar("md") !!}

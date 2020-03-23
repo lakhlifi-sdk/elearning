@@ -26,6 +26,7 @@ class CreateCoursQuestionsTable extends Migration
                     ->references('id')
                     ->on('users')
                     ->onDelete('cascade');
+            $table->boolean('readed')->nullable();
             $table->integer('question_id')->unsigned()->nullable();
             $table->foreign('question_id')
                     ->references('id')
