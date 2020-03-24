@@ -114,4 +114,22 @@ class Prof extends User
     public function getavatarfulllink(){
         return $this->user->getavatarfulllink();
     }
+
+
+    public function Json(){
+        return [
+            'id' => $this->id,
+            'user_id' => $this->user->id,
+            'name' => $this->user->getname(),
+            'role' => $this->user->getrole(),
+            'email' => $this->user->getemail(),
+            'avatar' => $this->user->getavatarfulllink(),
+            'phone' => $this->user->getphone(),
+            'cin' => $this->user->getcin(),
+            'matricule' => $this->getmatricule(),
+
+            'cours' => $this->cours,
+            'modules' => $this->modules,
+        ];
+    }
 }
