@@ -13480,8 +13480,8 @@ Card alert
 }
 
 .dropdown-menu-arrow.dropdown-menu-right:before, .dropdown-menu-arrow.dropdown-menu-right:after {
-  right: auto;
-  left: 12px;
+  left: auto;
+  right: 12px;
 }
 
 .dropdown-toggle {

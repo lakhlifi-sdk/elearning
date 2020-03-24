@@ -248,6 +248,50 @@ class CoursController extends Controller
     }
 
     /*
+     * make all question as readed
+     */
+    public function question_make_readed()
+    {
+        $user = auth()->user();
+        $prof = $user->prof;
+        foreach( $prof->cours as $cour ){
+            $ixts = $cour->questions()->where([
+                ['user_id', '!=',$user->id],
+                ['readed',null],
+            ])->update(array('readed' => 1));
+        }
+
+        return "ok";
+    }
+
+    /*
+     * notif unread questions
+     */
+    public function question_unread()
+    {
+        $user = auth()->user();
+        $prof = $user->prof;
+
+        $data = "";
+        foreach( $prof->cours as $cour ){
+            $ixts = $cour->questions()->where([
+                ['user_id', '!=',$user->id],
+                ['readed',null],
+            ])->count();
+            if($ixts)
+                $data .= '<a href="'.route('cours_edit', $cour->id).'?part=descussion" class="dropdown-item d-flex">
+                    <span class="avatar avatar-md avatar-green mr-3">'.$ixts.'</span>
+                    <div>
+                        <strong>'.$ixts.' '.__('cours.unread_questions').'</strong> 
+                        <div class="small text-muted">'.$cour.'</div>
+                    </div>
+                </a>';
+        }
+        return $data;
+        //return [ "msg"=>$html, "id"=>$question->id];
+    }
+
+    /*
      * send a question Or reply
      */
     public function add_question($id)

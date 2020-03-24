@@ -16,3 +16,29 @@
           </div>
         </div>
       </footer>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          @if( auth()->user()->getrole() == 'PROF')
+          $.ajax({
+            method: "GET",
+            url: "{{ route('cours_question_unread') }}",
+          }).done(function( data ) {
+            if(data){
+              $('#notification').html(data);
+              $('#hasnotification').show();
+            }
+          });
+          $('#amke_all_as_read_notification').click(function(){
+            $.ajax({
+              method: "GET",
+              url: "{{ route('cours_question_make_readed') }}",
+            }).done(function( data ) {
+              if( data){
+                $('#hasnotification').hide();
+              }
+            });
+            //
+          });
+          @endif
+        });
+      </script>

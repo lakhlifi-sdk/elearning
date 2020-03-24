@@ -81,6 +81,10 @@ class Prof extends User
         return $this->belongsToMany('App\Module','prof_modules');
     }
 
+    public function cours(){
+        return $this->hasMany('App\Cours');
+    }
+
     public function getmatricule(){
         return $this->matricule;
     }

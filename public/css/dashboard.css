@@ -13495,7 +13495,8 @@ Card alert
   content: '';
 }
 
-.dropdown-menu-arrow.dropdown-menu-left:before, .dropdown-menu-arrow.dropdown-menu-left:after {
+.dropdown-menu-arrow.dropdown-menu-left:before, .dropdown-menu-arrow.dropdown-menu-left:after ,
+.dropdown-menu-arrow.dropdown-menu-right:before, .dropdown-menu-arrow.dropdown-menu-right:after {
   left: auto;
   right: 12px;
 }

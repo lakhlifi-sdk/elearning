@@ -225,21 +225,21 @@ var editor = tinymce.init({
       @if( $object->id )
       <div class="selectgroup course_parts w-100">
         <label class="selectgroup-item">
-          <input type="radio" name="desc_value" value="_contenu" checked="" class="selectgroup-input">
+          <input type="radio" name="desc_value" value="_contenu" {{ Request::get('part') != 'contenu' ? '' : 'checked=""' }}  class="selectgroup-input">
           <span class="selectgroup-button _contenu">{{ __('cours.contenu_part') }}</span>
         </label>
         <label class="selectgroup-item">
-          <input type="radio" name="desc_value" value="_descussion" class="selectgroup-input">
+          <input type="radio" name="desc_value" {{ Request::get('part') == 'descussion' ? 'checked=""' : '' }} value="_descussion" class="selectgroup-input">
           <span class="selectgroup-button _descussion">{{ __('cours.descussion_part') }}</span>
         </label>
         <label class="selectgroup-item">
-          <input type="radio" name="desc_value" value="_quiz" class="selectgroup-input">
+          <input type="radio" name="desc_value" {{ Request::get('part') == 'quiz' ? 'checked=""' : '' }} value="_quiz" class="selectgroup-input">
           <span class="selectgroup-button _quiz">{{ __('cours.quiz_part') }}</span>
         </label>
       </div>
       @endif
 
-      <div class="row div_course_parts course__contenu active">
+      <div class="row div_course_parts course__contenu {{ Request::get('part') != 'contenu' ? '' : 'active' }}">
         <div class="col-md-12">
           <div class="form-group">
             <label class="form-label">{{ __('cours.titre') }}</label>
@@ -292,7 +292,7 @@ var editor = tinymce.init({
       </div>
 
 
-      <div class="row div_course_parts course__descussion">
+      <div class="row div_course_parts course__descussion {{ Request::get('part') == 'descussion' ? 'active' : '' }}">
         @if( $object->id )
         <div class="col-lg-12">
           <div class="card">
@@ -300,8 +300,12 @@ var editor = tinymce.init({
               <ul class="list-group card-list-group card_messages" id="media-list-" style="height: 70vh; overflow-y: scroll;">
 
                 @if( $object->id and $object->questions )
+                @php $object->questions()->where([
+                  ['user_id', '!=',$object->prof->user_id],
+                  ['readed',null],
+                ])->update(['readed' => 1]); @endphp
                 @foreach( $object->questions as $question )
-                <li class="list-group-item py-5" id="Q{{ $question->id }}">
+                <li class="list-group-item py-5 @if( $object->prof->user_id != $question->user_id ) readed_{{ $question->readed }} @endif" id="Q{{ $question->id }}">
                   <div class="media">
                     <div class="media-object">
                       {!! $question->user->getavatar() !!}
@@ -311,9 +315,7 @@ var editor = tinymce.init({
                         <small class="float-left text-muted">{{ $question->created_at }}</small>
                         <h5><b>{{ $question->user }}</b> [ #{{ $question->id }} ]</h5>
                       </div>
-                      <div>
-                        {!! $question->contenu !!}
-                      </div>
+                      <div> {!! $question->contenu !!} </div>
                       <ul id="media-list-{{ $question->id }}" class="media-list" >
                         @foreach( $question->reponses as $reponse )
                         <li class="list-group-item py-5" id="Q{{ $reponse->id }}">
@@ -363,7 +365,7 @@ var editor = tinymce.init({
       </div>
 
 
-      <div class="row div_course_parts course__quiz">
+      <div class="row div_course_parts course__quiz {{ Request::get('part') == 'quiz' ? 'active' : '' }}">
         @if( $object->id )
         <div class="col-lg-12">
           <div class="card">
@@ -585,6 +587,7 @@ var editor = tinymce.init({
       .addQuiz .input-group-append .select2-container{margin: 0 10px; min-width: 180px; }
       .addQuiz .input-group-append #new_QQUE_number{margin: 0 10px; }
       .addQuiz .input-group-append #SendQuizQuestion{width: 100px; }
+      .readed_{background: #edf2fa; }
     </style>
     <div class="card-footer text-right">
       @include('layout.update-actions')
