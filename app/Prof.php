@@ -128,8 +128,8 @@ class Prof extends User
             'cin' => $this->user->getcin(),
             'matricule' => $this->getmatricule(),
 
-            'cours' => $this->cours,
-            'modules' => $this->modules,
+            //'cours' => $this->cours,
+            //'modules' => $this->modules,
         ];
     }
 }

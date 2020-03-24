@@ -41,16 +41,17 @@ class ApiController extends Controller
 
     public function ProfLogin()
     {
-        if( !request('matricule') || !request('cin') )
+        if( !request('email') || !request('password') )
             return response()->json(['error' => 'fileds required'], 404);
 
-        $prof = Prof::where('matricule', request('matricule'))
-                            ->whereHas('user', function ($query) {
-                                $query->where('cin',request('cin')); 
-                            })->first();
+        if( \Auth::attempt(['email'=>request('email'),'password'=>request('password'),'role'=>'PROF' ]) ){
+            $prof = auth()->user()->prof;
+            if( $prof and $prof->id )
+                return $prof->Json();
+            
+            return response()->json(['error' => 'No prof'], 401);
+        }
 
-        if( $prof and $prof->id)
-            return $prof->Json();
 
         return response()->json(['error' => 'Unauthorized'], 401);
     }
