@@ -17,7 +17,7 @@ return[
     'quiz_question'=>'Le test',
     'new_quiz_question_type'=>'Le type du question',
     'true_false'=>'vrai ou faux',
-    'singl' =>'Case à cocher',
+    'single' =>'Case à cocher',
     'multiple'=>'Choix multiple',
     'new_quiz_question_number_reponses'=>"Nombre d'options",
     'check_correct_reponses'=>'Sélectionnez la ou les bonnes réponses',
@@ -25,4 +25,6 @@ return[
     'cours'=>'Cours',
     'td'=>'travaux dirigés',
     'tp'=>'travaux pratique',
+    'new_quiz_question'=>'Ajouter une question',
+    'responses_title'=>'Les choix disponibles',
 ];
