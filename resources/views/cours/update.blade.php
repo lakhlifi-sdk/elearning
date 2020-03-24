@@ -225,7 +225,7 @@ var editor = tinymce.init({
       @if( $object->id )
       <div class="selectgroup course_parts w-100">
         <label class="selectgroup-item">
-          <input type="radio" name="desc_value" value="_contenu" {{ Request::get('part') != 'contenu' ? '' : 'checked=""' }}  class="selectgroup-input">
+          <input type="radio" name="desc_value" value="_contenu" {{ Request::get('part') && Request::get('part') != 'contenu' ? '' : 'checked=""' }}  class="selectgroup-input">
           <span class="selectgroup-button _contenu">{{ __('cours.contenu_part') }}</span>
         </label>
         <label class="selectgroup-item">
@@ -239,7 +239,7 @@ var editor = tinymce.init({
       </div>
       @endif
 
-      <div class="row div_course_parts course__contenu {{ Request::get('part') != 'contenu' ? '' : 'active' }}">
+      <div class="row div_course_parts course__contenu {{ Request::get('part') && Request::get('part') != 'contenu' ? '' : 'active' }}">
         <div class="col-md-12">
           <div class="form-group">
             <label class="form-label">{{ __('cours.titre') }}</label>
@@ -263,9 +263,9 @@ var editor = tinymce.init({
           <div class="form-group">
             <label class="form-label">{{ __('cours.type') }}</label>
             <select id="type" name="type" required="required" class="form-control select_with_filter">
-              <option value="Cours" @if($object->id && $object->gettype() == "Cours" ) selected="selected" @endif >Cours</option>
-              <option value="TP" @if($object->id && $object->gettype() == "TP" ) selected="selected" @endif >TP</option>
-              <option value="TD" @if($object->id && $object->gettype() == "TD" ) selected="selected" @endif >TD</option>
+              <option value="Cours" @if($object->id && $object->gettype() == "Cours" ) selected="selected" @endif >{{ __('cours.cours') }}</option>
+              <option value="TP" @if($object->id && $object->gettype() == "TP" ) selected="selected" @endif >{{ __('cours.tp') }}</option>
+              <option value="TD" @if($object->id && $object->gettype() == "TD" ) selected="selected" @endif >{{ __('cours.td') }}</option>
             </select>
           </div>
         </div>
