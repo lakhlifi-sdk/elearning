@@ -81,6 +81,10 @@ class Prof extends User
         return $this->belongsToMany('App\Module','prof_modules');
     }
 
+    public function cours(){
+        return $this->hasMany('App\Cours');
+    }
+
     public function getmatricule(){
         return $this->matricule;
     }
@@ -103,8 +107,8 @@ class Prof extends User
         return $this->user->getcin();
     }
 
-    public function getavatar(){
-        return $this->user->getavatar();
+    public function getavatar($size="lg"){
+        return $this->user->getavatar($size);
     }
 
     public function getavatarfulllink(){

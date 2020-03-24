@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cours_question extends Model
 {
     protected $fillable = [
-        'contenu','cours_id','user_id','question_id'
+        'contenu','cours_id','user_id','question_id','readed'
     ];
 
 
@@ -30,6 +30,10 @@ class Cours_question extends Model
 
     public function getcontenu(){
         return $this->contenu;
+    }
+    
+    public function getreaded(){
+        return $this->readed;
     }
 
 }

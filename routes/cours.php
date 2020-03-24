@@ -46,6 +46,14 @@ Route::group(['middleware' => 'web'], function () {
             ->middleware('Admin:PROF')
             ->where('id', '[0-9]+');
 
+        Route::get('question_unread', 'CoursController@question_unread')
+            ->name('cours_question_unread')
+            ->middleware('Admin:PROF');
+        
+        Route::get('question_make_readed', 'CoursController@question_make_readed')
+            ->name('cours_question_make_readed')
+            ->middleware('Admin:PROF');
+
         // Etudient
         
         Route::get('{id}/etudient/question', 'CoursController@add_question')

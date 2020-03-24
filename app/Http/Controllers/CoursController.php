@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Cours;
 use App\Cours_question;
+use App\Quizquestion;
 
 class CoursController extends Controller
 {
@@ -15,6 +16,7 @@ class CoursController extends Controller
     public function filter_fields(){
         $auth = auth()->user();
         $prof = $auth->prof;
+        $etudient = $auth->etudient;
 
         $data = [
             'titre' => [
@@ -52,15 +54,13 @@ class CoursController extends Controller
                     ['prof_id',$prof->id]
                 ]
             ];
-        }else{
-            $etudient = $auth->etudient;
-            $etudient->modules_ids();
+        }elseif( $etudient and $etudient->id ){
             $data['module_id'] =  [
                 'type' => 'select',
                 'operation'=>'=',
                 'table' => 'modules',
                 'fields' => ['id as key_','name as value_'],
-                'whereIn' => ['id',$etudient->modules_ids() ]
+                'whereIn' => ['id',$ids ]
             ];
 
         }
@@ -184,6 +184,36 @@ class CoursController extends Controller
         $cours->start = request('start');
         $cours->end = request('end');
 
+        // save Quiz
+
+        $QQUE = request('QQUE');
+
+        //dd($QQUE);
+
+        if( $QQUE and is_array($QQUE) ){
+            foreach ($QQUE as $key => $value) {
+                if( is_numeric($key) ){
+                    // exists in database we need update it
+                    $QQ = Quizquestion::find($key);
+                    if( $QQ and $QQ->id ){
+                        $QQ->contenu =$value['contenu'];
+                        $QQ->reponses = json_encode($value['reponses']);
+                        //'type'=> $value['type'],
+                        //'cours_id'=> $cours->id,
+                        $QQ->save();
+                    }
+                }else{
+                    // new we need add it
+                    $QQ = Quizquestion::create([
+                        'type'=> $value['type'],
+                        'contenu'=> $value['contenu'],
+                        'cours_id'=> $cours->id,
+                        'reponses'=> json_encode($value['reponses']),
+                    ]);
+                }
+            }
+        }
+
         $cours->save();
 
         return redirect()
@@ -196,6 +226,9 @@ class CoursController extends Controller
      */
     public function destroy($id)
     {
+        $auth = auth()->user();
+        $prof = $auth->prof;
+
         $msg = 'delete_error';
         $flash_type = 'error';
         $cours = Cours::where([
@@ -211,6 +244,50 @@ class CoursController extends Controller
         return redirect()
             ->route('cours')
             ->with($flash_type, __('global.'.$msg));
+    }
+
+    /*
+     * make all question as readed
+     */
+    public function question_make_readed()
+    {
+        $user = auth()->user();
+        $prof = $user->prof;
+        foreach( $prof->cours as $cour ){
+            $ixts = $cour->questions()->where([
+                ['user_id', '!=',$user->id],
+                ['readed',null],
+            ])->update(array('readed' => 1));
+        }
+
+        return "ok";
+    }
+
+    /*
+     * notif unread questions
+     */
+    public function question_unread()
+    {
+        $user = auth()->user();
+        $prof = $user->prof;
+
+        $data = "";
+        foreach( $prof->cours as $cour ){
+            $ixts = $cour->questions()->where([
+                ['user_id', '!=',$user->id],
+                ['readed',null],
+            ])->count();
+            if($ixts)
+                $data .= '<a href="'.route('cours_edit', $cour->id).'?part=descussion" class="dropdown-item d-flex">
+                    <span class="avatar avatar-md avatar-green mr-3">'.$ixts.'</span>
+                    <div>
+                        <strong>'.$ixts.' '.__('cours.unread_questions').'</strong> 
+                        <div class="small text-muted">'.$cour.'</div>
+                    </div>
+                </a>';
+        }
+        return $data;
+        //return [ "msg"=>$html, "id"=>$question->id];
     }
 
     /*

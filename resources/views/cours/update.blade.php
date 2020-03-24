@@ -185,8 +185,27 @@ var editor = tinymce.init({
       });
     },
   };
-
   tinymce.init(editor_config);
+
+  function apply_editor(selector){
+    var editor_config_textarea = {
+      selector: selector,
+       menubar:false,
+    statusbar: false,
+      plugins: [
+        'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+        'wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+        'save table contextmenu directionality emoticons template paste textcolor'
+      ],
+      content_css: 'css/content.css',
+      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link forecolor backcolor'
+    };
+
+    tinymce.init(editor_config_textarea);
+
+  }
+  apply_editor("textarea.QQUE_TEXTAREA");
+  
 
 </script>
 @endsection
@@ -206,21 +225,21 @@ var editor = tinymce.init({
       @if( $object->id )
       <div class="selectgroup course_parts w-100">
         <label class="selectgroup-item">
-          <input type="radio" name="desc_value" value="_contenu" checked="" class="selectgroup-input">
+          <input type="radio" name="desc_value" value="_contenu" {{ Request::get('part') && Request::get('part') != 'contenu' ? '' : 'checked=""' }}  class="selectgroup-input">
           <span class="selectgroup-button _contenu">{{ __('cours.contenu_part') }}</span>
         </label>
         <label class="selectgroup-item">
-          <input type="radio" name="desc_value" value="_descussion" class="selectgroup-input">
+          <input type="radio" name="desc_value" {{ Request::get('part') == 'descussion' ? 'checked=""' : '' }} value="_descussion" class="selectgroup-input">
           <span class="selectgroup-button _descussion">{{ __('cours.descussion_part') }}</span>
         </label>
         <label class="selectgroup-item">
-          <input type="radio" name="desc_value" value="_quiz" class="selectgroup-input">
+          <input type="radio" name="desc_value" {{ Request::get('part') == 'quiz' ? 'checked=""' : '' }} value="_quiz" class="selectgroup-input">
           <span class="selectgroup-button _quiz">{{ __('cours.quiz_part') }}</span>
         </label>
       </div>
       @endif
 
-      <div class="row div_course_parts course__contenu active">
+      <div class="row div_course_parts course__contenu {{ Request::get('part') && Request::get('part') != 'contenu' ? '' : 'active' }}">
         <div class="col-md-12">
           <div class="form-group">
             <label class="form-label">{{ __('cours.titre') }}</label>
@@ -244,9 +263,9 @@ var editor = tinymce.init({
           <div class="form-group">
             <label class="form-label">{{ __('cours.type') }}</label>
             <select id="type" name="type" required="required" class="form-control select_with_filter">
-              <option value="Cours" @if($object->id && $object->gettype() == "Cours" ) selected="selected" @endif >Cours</option>
-              <option value="TP" @if($object->id && $object->gettype() == "TP" ) selected="selected" @endif >TP</option>
-              <option value="TD" @if($object->id && $object->gettype() == "TD" ) selected="selected" @endif >TD</option>
+              <option value="Cours" @if($object->id && $object->gettype() == "Cours" ) selected="selected" @endif >{{ __('cours.cours') }}</option>
+              <option value="TP" @if($object->id && $object->gettype() == "TP" ) selected="selected" @endif >{{ __('cours.tp') }}</option>
+              <option value="TD" @if($object->id && $object->gettype() == "TD" ) selected="selected" @endif >{{ __('cours.td') }}</option>
             </select>
           </div>
         </div>
@@ -273,7 +292,7 @@ var editor = tinymce.init({
       </div>
 
 
-      <div class="row div_course_parts course__descussion">
+      <div class="row div_course_parts course__descussion {{ Request::get('part') == 'descussion' ? 'active' : '' }}">
         @if( $object->id )
         <div class="col-lg-12">
           <div class="card">
@@ -281,8 +300,12 @@ var editor = tinymce.init({
               <ul class="list-group card-list-group card_messages" id="media-list-" style="height: 70vh; overflow-y: scroll;">
 
                 @if( $object->id and $object->questions )
+                @php $object->questions()->where([
+                  ['user_id', '!=',$object->prof->user_id],
+                  ['readed',null],
+                ])->update(['readed' => 1]); @endphp
                 @foreach( $object->questions as $question )
-                <li class="list-group-item py-5" id="Q{{ $question->id }}">
+                <li class="list-group-item py-5 @if( $object->prof->user_id != $question->user_id ) readed_{{ $question->readed }} @endif" id="Q{{ $question->id }}">
                   <div class="media">
                     <div class="media-object">
                       {!! $question->user->getavatar() !!}
@@ -292,9 +315,7 @@ var editor = tinymce.init({
                         <small class="float-left text-muted">{{ $question->created_at }}</small>
                         <h5><b>{{ $question->user }}</b> [ #{{ $question->id }} ]</h5>
                       </div>
-                      <div>
-                        {!! $question->contenu !!}
-                      </div>
+                      <div> {!! $question->contenu !!} </div>
                       <ul id="media-list-{{ $question->id }}" class="media-list" >
                         @foreach( $question->reponses as $reponse )
                         <li class="list-group-item py-5" id="Q{{ $reponse->id }}">
@@ -344,27 +365,29 @@ var editor = tinymce.init({
       </div>
 
 
-      <div class="row div_course_parts course__quiz">
+      <div class="row div_course_parts course__quiz {{ Request::get('part') == 'quiz' ? 'active' : '' }}">
         @if( $object->id )
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-bdy" >
+            <div class="card-bdy" id="quizquestions">
               @if( $object->id and $object->quizquestions )
               @foreach( $object->quizquestions as $QQUE )
-                <div class="card">
+                <div class="card card-question">
                   <div class="card-body">
                     <input name="QQUE[{{$QQUE->id}}][id]" type="hidden" value="{{ $QQUE->id }}">
-                    <textarea class="form-control QQUE" name="QQUE[{{$QQUE->id}}][contenu]">{{ $QQUE->contenu }}</textarea>
+                    <textarea class="form-control QQUE_TEXTAREA" name="QQUE[{{$QQUE->id}}][contenu]">{{ $QQUE->contenu }}</textarea>
                   </div>
                   <div class="card-footer">
-                    <h3 class="card-title">Card title</h3>
+                    <h3 class="card-title">{{ __("cours.responses_title") }} : <b>({{ __("cours.check_correct_reponses") }})</b></h3>
+                    {!! $QQUE->build_reponses() !!}
+                    <div class="clear"></div>
                   </div>
                 </div>
               @endforeach
               @endif
             </div>
-            <div class="card-footer">
-              <b>{{ __('cours.new_quiz_question') }}</b><hr/><br/>
+            <div class="card-footer addQuiz" style="background-color: #f5f7fb;">
+              <b>{{ __('cours.new_quiz_question') }}</b><br/>
               <div class="input-group">
                 <div class="input-group-append">
                   <span>{{ __('cours.new_quiz_question_type') }}</span>
@@ -375,8 +398,8 @@ var editor = tinymce.init({
                   </select>
                 </div>
                 <div class="input-group-append">
-                  <span>{{ __('cours.new_quiz_question_number') }}</span>
-                  <input id="new_QQUE_number" type="number" min="2" max="4">
+                  <span>{{ __('cours.new_quiz_question_number_reponses') }}</span>
+                  <input id="new_QQUE_number" value="2" disabled="disabled" type="number" min="2" max="6">
                 </div>
                 <div class="input-group-append">
                   <button type="button" class="btn btn-info" id="SendQuizQuestion">
@@ -463,6 +486,53 @@ var editor = tinymce.init({
           });
         });
 
+        $('#new_QQUE_type').change(function(){
+          if( $(this).val() == "true_false" )
+            $('#new_QQUE_number').attr('disabled', 'disabled');
+          else
+            $('#new_QQUE_number').removeAttr('disabled', 'disabled');
+        });
+
+        QQUENBR = 1;
+        $('#SendQuizQuestion').click(function(){
+          $type = $('#new_QQUE_type').val();
+          $number = $('#new_QQUE_number').val();
+
+          $Qhtml = '<div class="card  card-question"> \
+            <div class="card-body">\
+              <input type="hidden" value="'+$type+'" name="QQUE[new_'+QQUENBR+'][type]"> \
+              <textarea class="form-control QQUE" id="QQUE_'+QQUENBR+'_TEXTAREA" name="QQUE[new_'+QQUENBR+'][contenu]"></textarea> \
+            </div> \
+            <div class="card-footer"> \
+              <h3 class="card-title">{{ __("cours.responses_title") }} : <b>({{ __("cours.check_correct_reponses") }})</b></h3>';
+
+            if( $type == "true_false" )
+              $number = 2;
+
+            for( i=1; i<=$number; i++ ){
+
+              $Qhtml += '<div class="item"> \
+                <div class="input-group"> \
+                  <span class="input-group-prepend"> \
+                    <span class="input-group-text"> \
+                      <input type="'+( $type == 'multiple' ? 'checkbox' : 'radio' )+'" value="'+i+'" '+( i==1 ? 'checked="checked"' : '' )+' name="QQUE[new_'+QQUENBR+'][reponses][correct]'+( $type == 'multiple' ? '['+i+']' : '' )+'" class="input-group-text"> \
+                    </span> \
+                  </span> \
+                  <input type="text" name="QQUE[new_'+QQUENBR+'][reponses][data]['+i+']" class="form-control" value="choi '+i+'"> \
+                </div> \
+              </div>';
+
+            }
+
+          $Qhtml += '</div> \
+          </div>';
+
+          $('#quizquestions').append($Qhtml);
+          apply_editor('textarea#QQUE_'+QQUENBR+'_TEXTAREA');
+          QQUENBR ++;
+
+        });
+
       });
 
       /*ClassicEditor
@@ -509,6 +579,15 @@ var editor = tinymce.init({
     <style type="text/css">
       .div_course_parts:not(.active){display: none !important;} 
       .list-group-item.active{ background: #daeefc; }
+      .card-question{margin: 1%;width: 98%;background-color: #f5f5f5;}
+      .card-question .item{margin-bottom: 5px;}
+      .card-question .card-body{padding: 10px; border: none;}
+      .card-question .card-body .mce-container{border: none;}
+      .addQuiz>b{display: block; }
+      .addQuiz .input-group-append .select2-container{margin: 0 10px; min-width: 180px; }
+      .addQuiz .input-group-append #new_QQUE_number{margin: 0 10px; }
+      .addQuiz .input-group-append #SendQuizQuestion{width: 100px; }
+      .readed_{background: #edf2fa; }
     </style>
     <div class="card-footer text-right">
       @include('layout.update-actions')

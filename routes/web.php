@@ -22,6 +22,13 @@ Route::group(['middleware' => 'web'], function () {
     });
 });
 
+Route::get('lang/{lang}', function($lang){
+	if (array_key_exists($lang, Config::get('languages'))) {
+		Session::put('applocale', $lang);
+	}
+	return Redirect::back();
+})->name('setlange');
+
 include 'user.php';
 include 'media.php';
 include 'groupe.php';

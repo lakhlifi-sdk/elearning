@@ -116,7 +116,7 @@ class ProfController extends Controller
             }
         }
 
-        return redirect()->route('prof_edit', $user->id);
+        return redirect()->route('prof_edit', $prof->id);
     }
 
     /*
