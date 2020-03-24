@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3003ba94-cff4-4698-8704-c3c091d4190c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/../../../.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../../composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cours.php" beforeDir="false" afterPath="$PROJECT_DIR$/cours.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/etudient.php" beforeDir="false" afterPath="$PROJECT_DIR$/etudient.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filier.php" beforeDir="false" afterPath="$PROJECT_DIR$/filier.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/global.php" beforeDir="false" afterPath="$PROJECT_DIR$/global.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupe.php" beforeDir="false" afterPath="$PROJECT_DIR$/groupe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/module.php" beforeDir="false" afterPath="$PROJECT_DIR$/module.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/pagination.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/passwords.php" beforeDir="false" afterPath="$PROJECT_DIR$/passwords.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prof.php" beforeDir="false" afterPath="$PROJECT_DIR$/prof.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/question.php" beforeDir="false" afterPath="$PROJECT_DIR$/question.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/reponse.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/semester.php" beforeDir="false" afterPath="$PROJECT_DIR$/semester.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/validation.php" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1ZUiWXOWnXGteSNz4wGDnM0tbRf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3003ba94-cff4-4698-8704-c3c091d4190c" name="Default Changelist" comment="" />
+      <created>1584900108199</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584900108199</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

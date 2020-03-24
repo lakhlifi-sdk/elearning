@@ -27,4 +27,6 @@ return [
     'cin'=>'CIN',
     'cne'=>'Registration number or (CNE) ',
     'superadmin'=>'Super Admin',
+	'make_all_read'=>'Mark all as read',
+	'no_notifications'=>'No notification',
 ];

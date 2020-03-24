@@ -27,4 +27,6 @@ return [
     'cin'=>'CIN',
     'cne'=>'Matricule ou CNE (pour les étudiants)',
     'superadmin'=>'admin supérieur',
+	'make_all_read'=>'Tous marquer comme lu',
+	'no_notifications'=>'Aucune notification',
 ];

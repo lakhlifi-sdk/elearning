@@ -14,4 +14,15 @@ return[
     'cours_edit'=>'Edit the Course',
     'cours_create'=>'Add a Course',
     'question_replay'=>'reply',
-];
+    'quiz_question'=>'the Quiz',
+    'new_quiz_question_type'=>'The Question type',
+    'true_false'=>'True or false',
+    'singl' =>'Single option',
+    'multiple'=>'Multiple answers',
+    'new_quiz_question_number_reponses'=>'Number of choices',
+    'check_correct_reponses'=>'Select the correct answer(s)',
+	'unread_questions'=>'Unread questions',
+    'cours'=>'Courses',
+    'td'=>'Workshop',
+    'tp'=>'practical work',
+    ];

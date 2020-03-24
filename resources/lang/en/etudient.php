@@ -2,7 +2,7 @@
  return[
     'list_cours'=>'courses',
     'list_'=>'List of students',
-    'module_name'=>'Students space',
+    'module_name'=>'Students',
     'avatar'=>'Profile picture',
     'cne'=>'CNE',
     'name'=>'Name',
