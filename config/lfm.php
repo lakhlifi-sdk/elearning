@@ -141,7 +141,8 @@ return [
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         'application/vnd.openxmlformats-officedocument.presentationml.presentation',
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-        'application/docx'
+        'application/docx',
+        'application/msword'
     ],
 
     /*
