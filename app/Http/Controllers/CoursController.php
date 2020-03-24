@@ -16,6 +16,7 @@ class CoursController extends Controller
     public function filter_fields(){
         $auth = auth()->user();
         $prof = $auth->prof;
+        $etudient = $auth->etudient;
 
         $data = [
             'titre' => [
@@ -53,15 +54,13 @@ class CoursController extends Controller
                     ['prof_id',$prof->id]
                 ]
             ];
-        }else{
-            $etudient = $auth->etudient;
-            $etudient->modules_ids();
+        }elseif( $etudient and $etudient->id ){
             $data['module_id'] =  [
                 'type' => 'select',
                 'operation'=>'=',
                 'table' => 'modules',
                 'fields' => ['id as key_','name as value_'],
-                'whereIn' => ['id',$etudient->modules_ids() ]
+                'whereIn' => ['id',$ids ]
             ];
 
         }
