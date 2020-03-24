@@ -440,7 +440,7 @@ var editor = tinymce.init({
             maxInterval: (1000*60*60*8), // 8 Hours
             start: {}, // start picker options
             end: {}, // end picker options,
-            minDate: 0,
+            //minDate: 0,
             //maxDate: 1
           }
         );
