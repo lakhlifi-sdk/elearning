@@ -17,7 +17,7 @@ return[
     'quiz_question'=>'the Quiz',
     'new_quiz_question_type'=>'The Question type',
     'true_false'=>'True or false',
-    'singl' =>'Single option',
+    'single' =>'Single option',
     'multiple'=>'Multiple answers',
     'new_quiz_question_number_reponses'=>'Number of choices',
     'check_correct_reponses'=>'Select the correct answer(s)',
@@ -25,4 +25,6 @@ return[
     'cours'=>'Courses',
     'td'=>'Workshop',
     'tp'=>'practical work',
+    'new_quiz_question'=>'Add a new question',
+    'responses_title'=>'Available options',
     ];
