@@ -9,20 +9,14 @@
         {{ __('cours.titre') }} : <b>{{ $object->titre }}</b>
       </h3>
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
           <div class="form-group">
             <span class="tag tag-success">{{ $object->module }}</span>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="form-group">
             <span class="tag tag-indigo">{{ $object->prof }}</span>
-          </div>
-        </div>
-
-        <div class="col-md-2">
-          <div class="form-group">
-            {!! $object->tagtype() !!}
           </div>
         </div>
 
@@ -34,6 +28,12 @@
         <div class="col-md-2">
           <div class="form-group">
             <span class="tag">{{ $object->end }}</span>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="form-group">
+            {!! $object->tagtype() !!}
           </div>
         </div>
       </div>
@@ -54,11 +54,10 @@
       </div>
 
       <div class="row div_course_parts course__contenu active">
-
         <div class="col-md-12">
           {!! $object->getcontenu() !!}
         </div>
-          <div class="clear"></div>
+        <div class="clear"></div>
       </div>
 
 
@@ -67,7 +66,7 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-bdy" >
-              <ul class="list-group card-list-group card_messages" id="media-list-" style="height: 70vh; overflow-y: scroll;">
+              <ul class="list-group card-list-group card_messages" id="media-list-" style="min-height: 20vh;max-height: 70vh; overflow-y: scroll;">
 
                 @if( $object->id and $object->questions )
                 @foreach( $object->questions as $question )
