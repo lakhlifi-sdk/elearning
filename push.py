@@ -31,8 +31,6 @@ def pull():
     print("\n====================================================================\n")
     print("                              git pull                            ")
     print("\n====================================================================\n")
-    message = input("\nType in your commit message: ")
-    commit_message = f"{message}"
 
     run("pull", "origin", "master")
 
@@ -40,7 +38,7 @@ def push():
     print("\n====================================================================\n")
     print("                              git push                            ")
     print("\n====================================================================\n")
-    run("push", "-u", "origin", "master")
+    run("push", "origin", "master")
 
 
 def main():
