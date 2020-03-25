@@ -27,6 +27,15 @@ def commit():
 
     run("commit", "-m", commit_message)
 
+def pull():
+    print("\n====================================================================\n")
+    print("                              git pull                            ")
+    print("\n====================================================================\n")
+    message = input("\nType in your commit message: ")
+    commit_message = f"{message}"
+
+    run("pull", "origin", "master")
+
 def push():
     print("\n====================================================================\n")
     print("                              git push                            ")
@@ -45,7 +54,10 @@ def main():
     if( inp == "yes" ):
         add()
         commit()
-        push()
+        pull()
+        inp_push = input("Do you want push your commits ? [ Tape : yes or no ]").lower()
+        if( inp_push == "yes" ):
+            push()
     
     print("\n====================================================================\n")
     print("                              good bye ;D                            ")
