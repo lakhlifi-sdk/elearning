@@ -23,23 +23,23 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
   </head>
-  <body class="">
+  <body class="" style="background-color: rgb(190,190,229);">
     <div class="page">
       <div class="page-single">
         <div class="container">
           <div class="row">
             <div class="col col-login mx-auto">
               <div class="text-center mb-6">
-                <img src="{{ asset('img/logo.png') }}" class="h-9" alt="">
+                <img style="border-radius: 70px;" src="{{ asset('img/logo.png') }}" class="h-9" alt="">
               </div>
 
-              <form class="card" action="{{ route('login') }}" method="post">
+              <form style="border-radius: 20px;" class="card" action="{{ route('login') }}" method="post">
                 {{ csrf_field() }}
                 <div class="card-body p-6">
 
                   <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                     <label class="form-label">{{ __('auth.email') }}</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@example.com" name="email" value="{{ old('email') }}" required autofocus>
+                    <input style="border-radius: 20px;" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@example.com" name="email" value="{{ old('email') }}" required autofocus>
                     @if ($errors->has('email'))
                       <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
@@ -52,7 +52,7 @@
                       {{ __('auth.password') }}
                       <!-- a href="{{ route('password.request') }}" class="float-right small">استعادة كلمة المرور ؟</a -->
                     </label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" required placeholder="123">
+                    <input style="border-radius: 20px;" type="password" class="form-control" id="exampleInputPassword1" name="password" required placeholder="123">
 
                     @if ($errors->has('password'))
                       <span class="help-block">
@@ -63,13 +63,13 @@
 
                   <div class="form-group">
                     <label class="custom-control custom-checkbox">
-                      <input type="checkbox" name="remember" class="custom-control-input" {{ old('remember') ? 'checked' : '' }}>
+                      <input style="border-radius: 20px;" type="checkbox" name="remember" class="custom-control-input" {{ old('remember') ? 'checked' : '' }}>
                       <span class="custom-control-label">{{ __('auth.remember') }}</span>
                     </label>
                   </div>
 
                   <div class="form-footer">
-                    <button type="submit" class="btn btn-primary btn-block">{{ __('auth.validate') }}</button>
+                    <button style="border-radius: 20px;"type="submit" class="btn btn-primary btn-block">{{ __('auth.validate') }}</button>
                   </div>
                 </div>
               </form>
