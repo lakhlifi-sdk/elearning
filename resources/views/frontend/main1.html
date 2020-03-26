@@ -21,18 +21,6 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('index/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('index/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('index/css/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('index/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('index/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('index/css/nice-select.css') }}">
-    <link rel="stylesheet" href="{{ asset('index/css/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ asset('index/css/gijgo.css') }}">
-    <link rel="stylesheet" href="{{ asset('index/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('index/css/slicknav.css') }}">
-    <link rel="stylesheet" href="{{ asset('index/css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     @yield('head')
   </head>
   <body class="">
@@ -55,7 +43,7 @@
 
 --}}
     @section('navbar')
-    <nav hidden="" class="navbar navbar-custom">
+    <nav class="navbar navbar-custom">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -85,7 +73,7 @@
               </ul>
             </li>--}}
             @if( Auth::check() )
-            <li hidden="True" class="dropdown">
+            <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user-circle-o"></i>{{ auth()->user() }} <span class="caret"></span>
               </a>
@@ -111,7 +99,7 @@
               <a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> {{ __('global.login') }}</a>
             </li>
             <li>
-             {{--  <a href="{{ route('register') }}"><i class="fa fa-user-circle-o"></i>  --}}{{-- {{ __('global.register') }} </a>--}}
+              <a href="{{ route('register') }}"><i class="fa fa-user-circle-o"></i> {{ __('global.register') }}</a>
             </li>
             @endif
           </ul>
@@ -119,30 +107,6 @@
      </div>
       </div>
     </nav>
-
-     <div class="slider_area ">
-        <div class="single_slider d-flex align-items-center justify-content-center slider_bg_1">
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-xl-6 col-md-6 animated animate bounceInLeft">
-                        <div style="text-align: center;" class="">
-                            <img src="{{ asset('index/img/banner/edu_ilastration.png')}}" alt="" width="" height="">
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-6">
-                        <div class="slider_info animated animate flash">
-
-                            <h3 class="animated animate bounceInDown"> SIM e-learning platform <br>Learn your <br>
-                                Course <br>
-
-                                </h3>
-                            <a href="{{ route('login') }}" class="boxed_btn animated animate bounceInRight">{{ __('global.login') }}</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     {{--
     @show
@@ -155,33 +119,5 @@
     </div>
 
     --}}
-
-    <script src="{{ asset('index/js/vendor/modernizr-3.5.0.min.js') }}"></script>
-    <script src="{{ asset('index/js/vendor/jquery-1.12.4.min.js') }}"></script>
-    <script src="{{ asset('index/js/popper.min.js') }}"></script>
-    <script src="{{ asset('index/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('index/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('index/js/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ asset('index/js/ajax-form.js') }}"></script>
-    <script src="{{ asset('index/js/waypoints.min.js') }}"></script>
-    <script src="{{ asset('index/js/jquery.counterup.min.js') }}"></script>
-    <script src="{{ asset('index/js/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('index/js/scrollIt.js') }}"></script>
-    <script src="{{ asset('index/js/jquery.scrollUp.min.js') }}"></script>
-    <script src="{{ asset('index/js/wow.min.js') }}"></script>
-    <script src="{{ asset('index/js/nice-select.min.js') }}"></script>
-    <script src="{{ asset('index/js/jquery.slicknav.min.js') }}"></script>
-    <script src="{{ asset('index/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('index/js/plugins.js') }}"></script>
-    <script src="{{ asset('index/js/gijgo.min.js') }}"></script>
-
-    <!--contact js-->
-    <script src="{{ asset('index/js/contact.js') }}"></script>
-    <script src="{{ asset('index/js/jquery.ajaxchimp.min.js') }}"></script>
-    <script src="{{ asset('index/js/jquery.form.js') }}"></script>
-    <script src="{{ asset('index/js/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('index/js/mail-script.js') }}"></script>
-
-    <script src="{{ asset('index/js/main.js') }}"></script>
   </body>
 </html>
