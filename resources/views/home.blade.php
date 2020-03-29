@@ -5,11 +5,11 @@
                      {{-- <span class="text-default"> Bonjour monsieur  {{ auth()->user() }} bienvenu dans e-learning</span> --}}
                      <div class="container col-md-10">
                      <div class="row row-cards">
-                     	<div style="text-align: center;" class="card p-6">
-                     		<span class="text-default"> Hello Mr.  {{ auth()->user() }} Welcome to  e-learning </span>
+                     	<div style="text-align: center; color: blue;" class="card p-6">
+                     		<span class="" style="font-size:  20px; color: blue;"> Hello Mr.  {{ auth()->user() }} Welcome to  e-learning </span>
 		                
                      	</div>
-                     	 <div class="alert alert-primary">Some informations ... </div>
+                     	 <div class="alert alert-primary"> There is some informations ... </div>
                 @if($count_cours)     	 
               <div class="col-6 col-sm-4 col-lg-2">
 
