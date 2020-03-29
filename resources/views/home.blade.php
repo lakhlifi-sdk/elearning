@@ -20,10 +20,10 @@
                     	<span class="stamp stamp-md bg-blue mr-3">
                       <i class="fe fe-dollar-sign"></i>
                     </span>
-                      Cours                      <i class="fe fe-chevron-up"></i>
+                       {{ __('cours.module_name') }}                      <i class="fe fe-chevron-up"></i>
                     </div>
                     <div class="h1 m-0">{{$count_cours}}</div>
-                    <div class="text-muted mb-4">Cours</div>
+                    <div class="text-muted mb-4"> {{ __('cours.module_name') }}</div>
                   </div>
                 </div>
               </div>
@@ -32,11 +32,11 @@
                 <div class="card">
                   <div class="card-body p-3 text-center">
                     <div class="text-right text-red">
-                      Prof
+                      {{ __('prof.module_name') }}
                       <i class="fe fe-chevron-down"></i>
                     </div>
                     <div class="h1 m-0">{{$count_prof}}</div>
-                    <div class="text-muted mb-4">Professeurs</div>
+                    <div class="text-muted mb-4">{{ __('prof.module_name') }}</div>
                   </div>
                 </div>
               </div>
@@ -44,11 +44,11 @@
                 <div class="card">
                   <div class="card-body p-3 text-center">
                     <div class="text-right text-green">
-                      Etudients
+                      {{ __('etudient.module_name') }}
                       <i class="fe fe-chevron-up"></i>
                     </div>
                     <div class="h1 m-0">{{$count_etudients}}</div>
-                    <div class="text-muted mb-4">Etudients</div>
+                    <div class="text-muted mb-4">{{ __('etudient.module_name') }}</div>
                   </div>
                 </div>
               </div>
@@ -56,11 +56,11 @@
                 <div class="card">
                   <div class="card-body p-3 text-center">
                     <div class="text-right text-green">
-                      Questions
+                       {{ __('question.module_name') }}
                       <i class="fe fe-chevron-up"></i>
                     </div>
                     <div class="h1 m-0">{{$count_questions}}</div>
-                    <div class="text-muted mb-4">Questions</div>
+                    <div class="text-muted mb-4"> {{ __('question.module_name') }}</div>
                   </div>
                 </div>
               </div>
@@ -68,11 +68,11 @@
                 <div class="card">
                   <div class="card-body p-3 text-center">
                     <div class="text-right text-red">
-                      Modules
+                      {{ __('module.module_name') }}
                       <i class="fe fe-chevron-down"></i>
                     </div>
                     <div class="h1 m-0">{{$count_modules}}</div>
-                    <div class="text-muted mb-4">Modules</div>
+                    <div class="text-muted mb-4"> {{ __('module.module_name') }}</div>
                   </div>
                 </div>
               </div>
@@ -80,11 +80,11 @@
                 <div class="card">
                   <div class="card-body p-3 text-center">
                     <div class="text-right text-red">
-                      Filiers
+                      {{ __('filier.module_name') }}
                       <i class="fe fe-chevron-down"></i>
                     </div>
                     <div class="h1 m-0">{{$count_filiers}}</div>
-                    <div class="text-muted mb-4">Filiers</div>
+                    <div class="text-muted mb-4">{{ __('filier.module_name') }}</div>
                   </div>
                 </div>
               </div>
