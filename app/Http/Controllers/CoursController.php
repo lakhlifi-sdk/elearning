@@ -339,5 +339,11 @@ class CoursController extends Controller
         </li>';
     }
 
+public function home()
+    {
+        $count_cours = Cours::all()->count();
+        return view('home', ['count_cours'=>$count_cours]);
+    }
     
 }
+

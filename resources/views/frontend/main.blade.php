@@ -120,7 +120,8 @@
       </div>
     </nav>
 
-     <div class="slider_area " style="background-color: rgb(190,190,229);">
+     <div class="slider_area " style="background-color: rgb(190,190,229);animation: first-animation 2s infinite; 
+      another-animation 1s;">
         <div class="single_slider d-flex align-items-center justify-content-center {{-- slider_bg_1 --}}">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
@@ -132,7 +133,7 @@
                     <div class="col-xl-6 col-md-6">
                         <div class="slider_info animated animate flash">
 
-                            <h3 style="color: blue; font: bold;" class="animated animate bounceInDown">   
+                            <h3 style="color: blue; font: bold;" class="animated animate 8s bounceInDown">   
                                SIM e-learning platform 
 
                                 </h3>
