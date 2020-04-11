@@ -115,14 +115,14 @@
               </ul>
             </div>
             <div class="card-footer">
-              <div class="input-group root">
+              <div class="input-group root" id="root">
                 <input type="hidden" id="question_id">
                 <span id="question_text"></span>
 
-                <textarea v-model="message" id="message" rows="2" class="form-control" placeholder="...."></textarea>
+                <textarea v-model="message" id="message" rows="2" class="form-control" ></textarea>
                 <div class="input-group-append">
 
-                  <button type="button" class="btn btn-info" id="sendQuestion" v-bind:disabled="message.length <2">
+                  <button v-bind:disabled="message.length <1"  type="button" class="btn btn-info" id="sendQuestion">
                     <i class="fa fa-paper-plane"></i>
                   </button>
                 </div>
@@ -187,12 +187,14 @@
     </script>
 
 <script type="text/javascript">
+  
   new Vue({
-    el:".root",
+    el:"#root",
     data:{
       message:''
     }
   })
+
 </script>
 
     <style type="text/css">

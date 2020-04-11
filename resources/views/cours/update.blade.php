@@ -347,13 +347,13 @@ var editor = tinymce.init({
 
               </ul>
             </div>
-            <div class="card-footer">
+            <div class="card-footer root">
               <div class="input-group">
                 <input type="hidden" id="question_id">
                 <span id="question_text"></span>
-                <textarea id="message" rows="2" class="form-control" placeholder="...."></textarea>
+                <textarea id="message" v-model="messag" rows="2" class="form-control" placeholder="...."></textarea>
                 <div class="input-group-append">
-                  <button type="button" class="btn btn-info" id="sendQuestion">
+                  <button v-bind:disabled="messag.length <1"  type="button" class="btn btn-info" v-on:cl id="sendQuestion">
                     <i class="fa fa-paper-plane"></i>
                   </button>
                 </div>
@@ -575,6 +575,16 @@ var editor = tinymce.init({
   CKEDITOR.replace( 'contenu' , obja);*/
 
     </script>
+    <script type="text/javascript">
+  
+  new Vue({
+    el:".root",
+    data:{
+      messag:''
+    }
+  })
+
+</script>
 
     <style type="text/css">
       .div_course_parts:not(.active){display: none !important;} 
