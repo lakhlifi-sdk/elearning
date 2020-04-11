@@ -34,6 +34,7 @@
     <script src="{{ asset('js/select2-ar.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
+    <script src="{{ asset('frontend/js/vue.js') }}"></script>
     
     <script type="text/javascript">
       jQuery(document).ready(function(){

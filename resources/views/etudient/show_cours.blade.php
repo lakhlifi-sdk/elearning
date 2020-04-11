@@ -115,12 +115,14 @@
               </ul>
             </div>
             <div class="card-footer">
-              <div class="input-group">
+              <div class="input-group root">
                 <input type="hidden" id="question_id">
                 <span id="question_text"></span>
-                <textarea id="message" rows="2" class="form-control" placeholder="...."></textarea>
+
+                <textarea v-model="message" id="message" rows="2" class="form-control" placeholder="...."></textarea>
                 <div class="input-group-append">
-                  <button type="button" class="btn btn-info" id="sendQuestion">
+
+                  <button type="button" class="btn btn-info" id="sendQuestion" v-bind:disabled="message.length <2">
                     <i class="fa fa-paper-plane"></i>
                   </button>
                 </div>
@@ -183,6 +185,16 @@
         $('#message').focus();
       }
     </script>
+
+<script type="text/javascript">
+  new Vue({
+    el:".root",
+    data:{
+      message:''
+    }
+  })
+</script>
+
     <style type="text/css">
       .div_course_parts:not(.active){display: none !important;} 
       .list-group-item.active{ background: #daeefc; }
