@@ -122,7 +122,7 @@
                 <textarea v-model="message" id="message" rows="2" class="form-control" ></textarea>
                 <div class="input-group-append">
 
-                  <button v-bind:disabled="message.length <1"  type="button" class="btn btn-info" id="sendQuestion">
+                  <button v-bind:disabled="message.length <1" v-on:click="empty1" type="button" class="btn btn-info" id="sendQuestion">
                     <i class="fa fa-paper-plane"></i>
                   </button>
                 </div>
@@ -192,6 +192,11 @@
     el:"#root",
     data:{
       message:''
+    },
+    methods:{
+      empty1:function(){
+        this.message='';
+      }
     }
   })
 

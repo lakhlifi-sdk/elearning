@@ -353,7 +353,7 @@ var editor = tinymce.init({
                 <span id="question_text"></span>
                 <textarea id="message" v-model="messag" rows="2" class="form-control" placeholder="...."></textarea>
                 <div class="input-group-append">
-                  <button v-bind:disabled="messag.length <1"  type="button" class="btn btn-info" v-on:cl id="sendQuestion">
+                  <button v-bind:disabled="messag.length <1"  type="button" class="btn btn-info" v-on:cl id="sendQuestion" v-on:click="empty1">
                     <i class="fa fa-paper-plane"></i>
                   </button>
                 </div>
@@ -581,7 +581,13 @@ var editor = tinymce.init({
     el:".root",
     data:{
       messag:''
+    },
+    methods:{
+      empty1:function(){
+        this.messag='';
+      }
     }
+
   })
 
 </script>
